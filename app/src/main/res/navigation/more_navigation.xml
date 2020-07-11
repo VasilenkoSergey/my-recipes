@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/more_navigation"
+    app:startDestination="@id/navMore">
+
+    <fragment
+        android:id="@+id/navMore"
+        android:name="io.vasilenko.myrecipes.presentation.more.MoreFragment"
+        tools:layout="@layout/fragment_more"
+        android:label="HomeFragment" />
+
+</navigation>
