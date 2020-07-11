@@ -65,4 +65,8 @@ dependencies {
     // Adapter
     implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.3.0'
     implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:4.3.0'
+
+    // di
+    implementation 'com.google.dagger:dagger:2.27'
+    kapt 'com.google.dagger:dagger-compiler:2.27'
 }
