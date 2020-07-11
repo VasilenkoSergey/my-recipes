@@ -9,7 +9,7 @@
         android:icon="@drawable/ic_create"
         android:title="@string/create_bottom_menu_title" />
     <item
-        android:id="@+id/searchMenu"
-        android:icon="@drawable/ic_search"
-        android:title="@string/search_bottom_menu_title" />
+        android:id="@+id/moreMenu"
+        android:icon="@drawable/ic_more"
+        android:title="@string/more_bottom_menu_title" />
 </menu>

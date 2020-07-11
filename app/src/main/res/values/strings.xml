@@ -2,5 +2,5 @@
     <string name="app_name">Мои рецепты</string>
     <string name="home_bottom_menu_title">Каталог</string>
     <string name="create_bottom_menu_title">Добавить</string>
-    <string name="search_bottom_menu_title">Поиск</string>
+    <string name="more_bottom_menu_title">Еще</string>
 </resources>

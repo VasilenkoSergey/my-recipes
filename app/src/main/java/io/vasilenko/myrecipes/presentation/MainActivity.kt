@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import io.vasilenko.myrecipes.R
 import io.vasilenko.myrecipes.databinding.ActivityMainBinding
-import io.vasilenko.myrecipes.presentation.home.HomeFragment
+import io.vasilenko.myrecipes.presentation.catalog.CatalogFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .add(R.id.container, HomeFragment())
+                .add(R.id.container, CatalogFragment())
                 .commitAllowingStateLoss()
         }
     }
