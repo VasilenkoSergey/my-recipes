@@ -4,4 +4,9 @@
     <string name="create_bottom_menu_title">Добавить</string>
     <string name="more_bottom_menu_title">Еще</string>
     <string name="see_all">Смотреть все</string>
+    <string name="create">Создать</string>
+    <string name="add_new_category_or_recipe_text">Добавьте новую категорию или рецепт</string>
+    <string name="create_category">Создать категорию</string>
+    <string name="create_recipe">Создать рецепт</string>
+    <string name="more">Еще</string>
 </resources>

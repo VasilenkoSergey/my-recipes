@@ -8,7 +8,26 @@
     <fragment
         android:id="@+id/navCreate"
         android:name="io.vasilenko.myrecipes.presentation.create.CreateFragment"
-        tools:layout="@layout/fragment_create"
-        android:label="HomeFragment" />
+        android:label="CatalogFragment"
+        tools:layout="@layout/fragment_create">
+        <action
+            android:id="@+id/action_navCreate_to_createCategoryFragment"
+            app:destination="@id/createCategoryFragment" />
+        <action
+            android:id="@+id/action_navCreate_to_createRecipeFragment"
+            app:destination="@id/createRecipeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/createCategoryFragment"
+        android:name="io.vasilenko.myrecipes.presentation.create.category.CreateCategoryFragment"
+        android:label="CreateCategoryFragment"
+        tools:layout="@layout/fragment_create_category" />
+
+    <fragment
+        android:id="@+id/createRecipeFragment"
+        android:name="io.vasilenko.myrecipes.presentation.create.recipe.CreateRecipeFragment"
+        android:label="CreateRecipeFragment"
+        tools:layout="@layout/fragment_create_recipe" />
 
 </navigation>
