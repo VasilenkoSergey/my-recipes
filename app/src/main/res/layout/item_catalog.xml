@@ -14,10 +14,26 @@
         android:layout_marginEnd="16dp"
         android:fontFamily="sans-serif-medium"
         android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@id/titleTextViewShow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Title" />
+
+    <TextView
+        android:id="@+id/titleTextViewShow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/see_all"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/recyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/titleTextView"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="See all" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
