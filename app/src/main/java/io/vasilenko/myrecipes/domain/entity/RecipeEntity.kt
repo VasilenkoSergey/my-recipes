@@ -1,4 +1,6 @@
 package io.vasilenko.myrecipes.domain.entity
 
-class RecipeEntity {
-}
+data class RecipeEntity(
+    val id: Long,
+    val name: String
+)

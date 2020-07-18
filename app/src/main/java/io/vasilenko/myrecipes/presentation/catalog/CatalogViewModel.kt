@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.vasilenko.myrecipes.domain.usecase.LoadAllCategoriesUseCase
+import io.vasilenko.myrecipes.domain.usecase.LoadAllRecipesUseCase
 import io.vasilenko.myrecipes.presentation.common.ListItem
 import io.vasilenko.myrecipes.presentation.model.*
 import kotlinx.coroutines.Dispatchers
@@ -12,7 +13,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class CatalogViewModel @Inject constructor(
-    private val loadAllCategoriesUseCase: LoadAllCategoriesUseCase
+    private val loadAllCategoriesUseCase: LoadAllCategoriesUseCase,
+    private val loadAllRecipesUseCase: LoadAllRecipesUseCase
 ) : ViewModel() {
 
     private val _data = MutableLiveData<List<ListItem>>()
@@ -38,17 +40,14 @@ class CatalogViewModel @Inject constructor(
             )
         }
 
-        val latestRecipes = listOf(
-            Recipe(1L, "Название", ""),
-            Recipe(2L, "Название", ""),
-            Recipe(3L, "Название", "")
-        ).map {
-            CatalogRecipeItem(
-                id = it.id,
-                title = it.title,
-                image = it.image
-            )
-        }
+        val recipes = loadAllRecipesUseCase.execute()
+            .map {
+                CatalogRecipeItem(
+                    id = it.id,
+                    title = it.name,
+                    image = ""
+                )
+            }
 
         val categories = loadAllCategoriesUseCase.execute()
             .map {
@@ -66,7 +65,7 @@ class CatalogViewModel @Inject constructor(
             ),
             CatalogGroupItem(
                 "Рецепты",
-                latestRecipes
+                recipes
             ),
             CatalogGroupItem(
                 "Категории",
