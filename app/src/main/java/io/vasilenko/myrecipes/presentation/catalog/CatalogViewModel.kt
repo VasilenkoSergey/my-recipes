@@ -4,12 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import io.vasilenko.myrecipes.domain.usecase.LoadAllCategoriesUseCase
 import io.vasilenko.myrecipes.presentation.common.ListItem
 import io.vasilenko.myrecipes.presentation.model.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class CatalogViewModel : ViewModel() {
+class CatalogViewModel @Inject constructor(
+    private val loadAllCategoriesUseCase: LoadAllCategoriesUseCase
+) : ViewModel() {
 
     private val _data = MutableLiveData<List<ListItem>>()
     val data: LiveData<List<ListItem>> = _data
@@ -21,7 +25,7 @@ class CatalogViewModel : ViewModel() {
         }
     }
 
-    private fun getItems(): List<ListItem> {
+    private suspend fun getItems(): List<ListItem> {
         val favoriteRecipes = listOf(
             Recipe(1L, "Название", ""),
             Recipe(2L, "Название", ""),
@@ -46,17 +50,14 @@ class CatalogViewModel : ViewModel() {
             )
         }
 
-        val categories = listOf(
-            Category(1L, "Название", ""),
-            Category(2L, "Название", ""),
-            Category(3L, "Название", "")
-        ).map {
-            CatalogCategoryItem(
-                id = it.id,
-                title = it.title,
-                image = it.image
-            )
-        }
+        val categories = loadAllCategoriesUseCase.execute()
+            .map {
+                CatalogCategoryItem(
+                    id = it.id,
+                    title = it.name,
+                    image = ""
+                )
+            }
 
         return listOf(
             CatalogGroupItem(

@@ -7,5 +7,5 @@ import androidx.room.Query
 interface CategoriesDao {
 
     @Query("SELECT * FROM categories")
-    suspend fun getAll(): List<Category>
+    suspend fun findAll(): List<Category>
 }

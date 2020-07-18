@@ -4,5 +4,5 @@ import io.vasilenko.myrecipes.domain.entity.CategoryEntity
 
 interface CategoriesRepo {
 
-    suspend fun getAll(): List<CategoryEntity>
+    suspend fun findAll(): List<CategoryEntity>
 }
