@@ -3,11 +3,13 @@ package io.vasilenko.myrecipes.presentation.catalog
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import io.vasilenko.myrecipes.databinding.ItemCatalogCategoryBinding
+import io.vasilenko.myrecipes.databinding.ItemCatalogEmptyBinding
 import io.vasilenko.myrecipes.databinding.ItemCatalogRecipeBinding
 import io.vasilenko.myrecipes.databinding.ItemCatalogRecipeFavoriteBinding
 import io.vasilenko.myrecipes.presentation.common.BaseDiffUtilItemCallback
 import io.vasilenko.myrecipes.presentation.common.ListItem
 import io.vasilenko.myrecipes.presentation.model.CatalogCategoryItem
+import io.vasilenko.myrecipes.presentation.model.CatalogEmptyItem
 import io.vasilenko.myrecipes.presentation.model.CatalogFavoriteRecipeItem
 import io.vasilenko.myrecipes.presentation.model.CatalogRecipeItem
 
@@ -18,6 +20,7 @@ class CatalogItemsAdapter : AsyncListDifferDelegationAdapter<ListItem>(BaseDiffU
             .addDelegate(favoriteRecipesDelegate())
             .addDelegate(categoriesDelegate())
             .addDelegate(recipesDelegate())
+            .addDelegate(emptyDelegate())
     }
 
     private fun favoriteRecipesDelegate() =
@@ -32,7 +35,7 @@ class CatalogItemsAdapter : AsyncListDifferDelegationAdapter<ListItem>(BaseDiffU
         ) {
             bind {
                 binding.title = item.title
-                binding.imageView.setBackgroundColor(item.hashCode())
+                binding.imageView.setBackgroundColor(-10354450)
                 binding.executePendingBindings()
             }
         }
@@ -43,8 +46,17 @@ class CatalogItemsAdapter : AsyncListDifferDelegationAdapter<ListItem>(BaseDiffU
         ) {
             bind {
                 binding.title = item.title
-                binding.imageView.setBackgroundColor(item.hashCode())
+                binding.imageView.setBackgroundColor(-10354450)
                 binding.executePendingBindings()
+            }
+        }
+
+    private fun emptyDelegate() =
+        adapterDelegateViewBinding<CatalogEmptyItem, ListItem, ItemCatalogEmptyBinding>(
+            { inflater, container -> ItemCatalogEmptyBinding.inflate(inflater, container, false) }
+        ) {
+            bind {
+                binding.titleTextView.text = item.title
             }
         }
 
@@ -60,7 +72,7 @@ class CatalogItemsAdapter : AsyncListDifferDelegationAdapter<ListItem>(BaseDiffU
         ) {
             bind {
                 binding.title = item.title
-                binding.imageView.setBackgroundColor(item.hashCode())
+                binding.imageView.setBackgroundColor(-10354450)
                 binding.executePendingBindings()
             }
         }
