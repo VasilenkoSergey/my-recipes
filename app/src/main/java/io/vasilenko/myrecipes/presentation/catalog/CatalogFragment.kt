@@ -7,12 +7,14 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import io.vasilenko.myrecipes.R
 import io.vasilenko.myrecipes.databinding.FragmentCatalogBinding
+import io.vasilenko.myrecipes.di.catalog.CatalogComponent
 import io.vasilenko.myrecipes.presentation.common.viewBinding
 
 class CatalogFragment : Fragment(R.layout.fragment_catalog) {
 
     private val binding by viewBinding { FragmentCatalogBinding.bind(it) }
-    private val viewModel by viewModels<CatalogViewModel>()
+    private val component by lazy { CatalogComponent.create() }
+    private val viewModel by viewModels<CatalogViewModel> { component.viewModelFactory() }
     private val adapter = CatalogAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
