@@ -9,5 +9,5 @@
     <string name="create_category">Создать категорию</string>
     <string name="create_recipe">Создать рецепт</string>
     <string name="more">Еще</string>
-    <string name="category_name_hint">Название</string>
+    <string name="name_hint">Название</string>
 </resources>
