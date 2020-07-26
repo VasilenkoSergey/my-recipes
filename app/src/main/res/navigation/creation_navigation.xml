@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/creation_navigation"
+    app:startDestination="@id/navCreation">
+
+    <fragment
+        android:id="@+id/navCreation"
+        android:name="io.vasilenko.myrecipes.presentation.creation.CreationFragment"
+        android:label="CatalogFragment"
+        tools:layout="@layout/fragment_creation">
+        <action
+            android:id="@+id/action_navCreate_to_createCategoryFragment"
+            app:destination="@id/categoryCreationFragment" />
+        <action
+            android:id="@+id/action_navCreate_to_createRecipeFragment"
+            app:destination="@id/recipeCreationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/categoryCreationFragment"
+        android:name="io.vasilenko.myrecipes.presentation.creation.category.CategoryCreationFragment"
+        android:label="CreateCategoryFragment"
+        tools:layout="@layout/fragment_creation_category" />
+
+    <fragment
+        android:id="@+id/recipeCreationFragment"
+        android:name="io.vasilenko.myrecipes.presentation.creation.recipe.RecipeCreationFragment"
+        android:label="CreateRecipeFragment"
+        tools:layout="@layout/fragment_creation_recipe" />
+
+</navigation>

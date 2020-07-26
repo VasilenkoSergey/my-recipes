@@ -1,4 +1,4 @@
-package io.vasilenko.myrecipes.presentation.category
+package io.vasilenko.myrecipes.presentation.creation.category
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,7 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class CategoryViewModel @Inject constructor(
+class CategoryCreationViewModel @Inject constructor(
     private val createUseCase: CreateCategoryUseCase,
     private val mapper: CategoriesModelMapper
 ) : ViewModel() {

@@ -11,7 +11,7 @@ import io.vasilenko.myrecipes.data.repo.CategoriesRepository
 import io.vasilenko.myrecipes.domain.repo.CategoriesRepo
 import io.vasilenko.myrecipes.domain.usecase.CreateCategoryUseCase
 import io.vasilenko.myrecipes.domain.usecase.UseCase
-import io.vasilenko.myrecipes.presentation.category.CategoryViewModel
+import io.vasilenko.myrecipes.presentation.creation.category.CategoryCreationViewModel
 import io.vasilenko.myrecipes.presentation.mapper.CategoriesModelMapper
 
 @Module
@@ -39,6 +39,6 @@ abstract class CategoryBindsModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(CategoryViewModel::class)
-    abstract fun bindCatalogViewModel(viewModel: CategoryViewModel): ViewModel
+    @ViewModelKey(CategoryCreationViewModel::class)
+    abstract fun bindCatalogViewModel(viewModel: CategoryCreationViewModel): ViewModel
 }

@@ -1,4 +1,4 @@
-package io.vasilenko.myrecipes.presentation.create.recipe
+package io.vasilenko.myrecipes.presentation.creation.recipe
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,7 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class CreateRecipeViewModel @Inject constructor(
+class RecipeCreationViewModel @Inject constructor(
     private val createUseCase: CreateRecipeUseCase,
     private val mapper: RecipesModelMapper
 ) : ViewModel() {

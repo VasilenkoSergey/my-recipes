@@ -11,7 +11,7 @@ import io.vasilenko.myrecipes.data.repo.RecipesRepository
 import io.vasilenko.myrecipes.domain.repo.RecipesRepo
 import io.vasilenko.myrecipes.domain.usecase.CreateRecipeUseCase
 import io.vasilenko.myrecipes.domain.usecase.UseCase
-import io.vasilenko.myrecipes.presentation.create.recipe.CreateRecipeViewModel
+import io.vasilenko.myrecipes.presentation.creation.recipe.RecipeCreationViewModel
 import io.vasilenko.myrecipes.presentation.mapper.RecipesModelMapper
 
 @Module
@@ -39,6 +39,6 @@ abstract class RecipeBindsModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(CreateRecipeViewModel::class)
-    abstract fun bindRecipeViewModel(viewModel: CreateRecipeViewModel): ViewModel
+    @ViewModelKey(RecipeCreationViewModel::class)
+    abstract fun bindRecipeViewModel(viewModel: RecipeCreationViewModel): ViewModel
 }

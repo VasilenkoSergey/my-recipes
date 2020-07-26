@@ -1,20 +1,20 @@
-package io.vasilenko.myrecipes.presentation.category
+package io.vasilenko.myrecipes.presentation.creation.recipe
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import io.vasilenko.myrecipes.R
-import io.vasilenko.myrecipes.databinding.FragmentCategoryBinding
-import io.vasilenko.myrecipes.di.component.CategoryComponent
+import io.vasilenko.myrecipes.databinding.FragmentCreationRecipeBinding
+import io.vasilenko.myrecipes.di.component.RecipeCreationComponent
 import io.vasilenko.myrecipes.presentation.common.viewBinding
-import io.vasilenko.myrecipes.presentation.model.CategoryModel
+import io.vasilenko.myrecipes.presentation.model.RecipeModel
 
-class CategoryFragment : Fragment(R.layout.fragment_category) {
+class RecipeCreationFragment : Fragment(R.layout.fragment_creation_recipe) {
 
-    private val binding by viewBinding { FragmentCategoryBinding.bind(it) }
-    private val component by lazy { CategoryComponent.create() }
-    private val viewModel by viewModels<CategoryViewModel> { component.viewModelFactory() }
+    private val binding by viewBinding { FragmentCreationRecipeBinding.bind(it) }
+    private val component by lazy { RecipeCreationComponent.create() }
+    private val viewModel by viewModels<RecipeCreationViewModel> { component.viewModelFactory() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,7 +31,7 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
         createBtn.setOnClickListener {
             val title = binding.nameEditText.text.toString()
             title.let {
-                viewModel.saveCategory(CategoryModel(title = title, image = ""))
+                viewModel.createRecipe(RecipeModel(title = title, image = ""))
             }
             close()
         }
