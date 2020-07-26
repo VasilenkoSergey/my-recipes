@@ -18,6 +18,14 @@ class CreateRecipeFragment : Fragment(R.layout.fragment_create_recipe) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupView()
+    }
+
+    private fun setupView() {
+        with(binding) {
+            toolbar.title = getString(R.string.create_recipe_title)
+            toolbar.setNavigationOnClickListener { close() }
+        }
 
         val createBtn = binding.createBtn
         createBtn.setOnClickListener {
