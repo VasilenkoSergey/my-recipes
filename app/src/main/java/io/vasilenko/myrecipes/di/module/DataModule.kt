@@ -1,4 +1,4 @@
-package io.vasilenko.myrecipes.di
+package io.vasilenko.myrecipes.di.module
 
 import android.content.Context
 import androidx.lifecycle.ViewModelProvider
@@ -9,8 +9,8 @@ import dagger.Provides
 import io.vasilenko.myrecipes.core.ViewModelFactory
 import io.vasilenko.myrecipes.core.resources.AndroidResourceProvider
 import io.vasilenko.myrecipes.core.resources.ResourceProvider
-import io.vasilenko.myrecipes.data.db.CategoriesDao
-import io.vasilenko.myrecipes.data.db.RecipesDao
+import io.vasilenko.myrecipes.data.dao.CategoriesDao
+import io.vasilenko.myrecipes.data.dao.RecipesDao
 import io.vasilenko.myrecipes.data.db.RecipesDatabase
 import javax.inject.Singleton
 

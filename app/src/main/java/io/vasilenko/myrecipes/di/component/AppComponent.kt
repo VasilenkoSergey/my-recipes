@@ -1,12 +1,14 @@
-package io.vasilenko.myrecipes.di
+package io.vasilenko.myrecipes.di.component
 
 import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
 import io.vasilenko.myrecipes.core.resources.ResourceProvider
-import io.vasilenko.myrecipes.data.db.CategoriesDao
-import io.vasilenko.myrecipes.data.db.RecipesDao
+import io.vasilenko.myrecipes.data.dao.CategoriesDao
+import io.vasilenko.myrecipes.data.dao.RecipesDao
 import io.vasilenko.myrecipes.data.db.RecipesDatabase
+import io.vasilenko.myrecipes.di.module.DataBindsModule
+import io.vasilenko.myrecipes.di.module.DataModule
 import javax.inject.Singleton
 
 @Singleton

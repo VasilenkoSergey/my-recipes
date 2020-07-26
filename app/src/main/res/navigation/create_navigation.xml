@@ -20,9 +20,9 @@
 
     <fragment
         android:id="@+id/createCategoryFragment"
-        android:name="io.vasilenko.myrecipes.presentation.create.category.CreateCategoryFragment"
+        android:name="io.vasilenko.myrecipes.presentation.category.CategoryFragment"
         android:label="CreateCategoryFragment"
-        tools:layout="@layout/fragment_create_category" />
+        tools:layout="@layout/fragment_category" />
 
     <fragment
         android:id="@+id/createRecipeFragment"

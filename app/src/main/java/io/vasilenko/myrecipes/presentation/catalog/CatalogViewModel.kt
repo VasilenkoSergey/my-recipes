@@ -6,11 +6,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.vasilenko.myrecipes.domain.usecase.LoadAllCategoriesUseCase
 import io.vasilenko.myrecipes.domain.usecase.LoadAllRecipesUseCase
+import io.vasilenko.myrecipes.presentation.catalog.adapter.CatalogCategoryItem
+import io.vasilenko.myrecipes.presentation.catalog.adapter.CatalogEmptyItem
+import io.vasilenko.myrecipes.presentation.catalog.adapter.CatalogGroupItem
+import io.vasilenko.myrecipes.presentation.catalog.adapter.CatalogRecipeItem
 import io.vasilenko.myrecipes.presentation.common.ListItem
-import io.vasilenko.myrecipes.presentation.model.CatalogCategoryItem
-import io.vasilenko.myrecipes.presentation.model.CatalogEmptyItem
-import io.vasilenko.myrecipes.presentation.model.CatalogGroupItem
-import io.vasilenko.myrecipes.presentation.model.CatalogRecipeItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -23,7 +23,7 @@ class CatalogViewModel @Inject constructor(
     private val _data = MutableLiveData<List<ListItem>>()
     val data: LiveData<List<ListItem>> = _data
 
-    init {
+    fun onViewCreated() {
         viewModelScope.launch(Dispatchers.IO) {
             val items = getItems()
             _data.postValue(items)

@@ -1,6 +1,6 @@
 package io.vasilenko.myrecipes.data.mapper
 
-import io.vasilenko.myrecipes.data.db.Recipe
+import io.vasilenko.myrecipes.data.entity.Recipe
 import io.vasilenko.myrecipes.domain.entity.RecipeEntity
 
 class RecipesMapper {

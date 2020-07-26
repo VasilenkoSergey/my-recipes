@@ -1,7 +1,8 @@
-package io.vasilenko.myrecipes.data.db
+package io.vasilenko.myrecipes.data.dao
 
 import androidx.room.Dao
 import androidx.room.Query
+import io.vasilenko.myrecipes.data.entity.Recipe
 
 @Dao
 interface RecipesDao {

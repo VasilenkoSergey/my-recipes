@@ -1,6 +1,6 @@
 package io.vasilenko.myrecipes.data.repo
 
-import io.vasilenko.myrecipes.data.db.RecipesDao
+import io.vasilenko.myrecipes.data.dao.RecipesDao
 import io.vasilenko.myrecipes.data.mapper.RecipesMapper
 import io.vasilenko.myrecipes.domain.entity.RecipeEntity
 import io.vasilenko.myrecipes.domain.repo.RecipesRepo

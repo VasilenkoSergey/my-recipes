@@ -1,4 +1,4 @@
-package io.vasilenko.myrecipes.presentation.catalog
+package io.vasilenko.myrecipes.presentation.catalog.adapter
 
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
@@ -8,10 +8,6 @@ import io.vasilenko.myrecipes.databinding.ItemCatalogRecipeBinding
 import io.vasilenko.myrecipes.databinding.ItemCatalogRecipeFavoriteBinding
 import io.vasilenko.myrecipes.presentation.common.BaseDiffUtilItemCallback
 import io.vasilenko.myrecipes.presentation.common.ListItem
-import io.vasilenko.myrecipes.presentation.model.CatalogCategoryItem
-import io.vasilenko.myrecipes.presentation.model.CatalogEmptyItem
-import io.vasilenko.myrecipes.presentation.model.CatalogFavoriteRecipeItem
-import io.vasilenko.myrecipes.presentation.model.CatalogRecipeItem
 
 class CatalogItemsAdapter : AsyncListDifferDelegationAdapter<ListItem>(BaseDiffUtilItemCallback()) {
 

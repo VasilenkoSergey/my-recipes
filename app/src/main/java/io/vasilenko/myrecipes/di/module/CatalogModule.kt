@@ -1,4 +1,4 @@
-package io.vasilenko.myrecipes.di.catalog
+package io.vasilenko.myrecipes.di.module
 
 import androidx.lifecycle.ViewModel
 import dagger.Binds

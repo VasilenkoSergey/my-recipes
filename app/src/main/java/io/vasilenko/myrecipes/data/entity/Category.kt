@@ -1,4 +1,4 @@
-package io.vasilenko.myrecipes.data.db
+package io.vasilenko.myrecipes.data.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

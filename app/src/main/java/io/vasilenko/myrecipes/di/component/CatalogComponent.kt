@@ -1,12 +1,13 @@
-package io.vasilenko.myrecipes.di.catalog
+package io.vasilenko.myrecipes.di.component
 
 import dagger.BindsInstance
 import dagger.Component
 import io.vasilenko.myrecipes.core.FeatureScope
 import io.vasilenko.myrecipes.core.ViewModelFactory
-import io.vasilenko.myrecipes.data.db.CategoriesDao
-import io.vasilenko.myrecipes.data.db.RecipesDao
+import io.vasilenko.myrecipes.data.dao.CategoriesDao
+import io.vasilenko.myrecipes.data.dao.RecipesDao
 import io.vasilenko.myrecipes.di.DI
+import io.vasilenko.myrecipes.di.module.*
 
 @FeatureScope
 @Component(
@@ -27,8 +28,10 @@ interface CatalogComponent {
 
         @BindsInstance
         fun categoriesDao(dao: CategoriesDao): Builder
+
         @BindsInstance
         fun recipesDao(dao: RecipesDao): Builder
+
         fun build(): CatalogComponent
     }
 

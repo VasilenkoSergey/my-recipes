@@ -1,10 +1,9 @@
-package io.vasilenko.myrecipes.presentation.model
+package io.vasilenko.myrecipes.presentation.catalog.adapter
 
 import io.vasilenko.myrecipes.presentation.common.ListItem
 
-data class CatalogGroupItem(
-    val title: String,
-    val recipes: List<ListItem>
+data class CatalogEmptyItem(
+    val title: String
 ) : ListItem {
     override val itemId: Long = title.hashCode().toLong()
 }

@@ -1,4 +1,4 @@
-package io.vasilenko.myrecipes.di.catalog
+package io.vasilenko.myrecipes.di.module
 
 import dagger.Binds
 import dagger.Module

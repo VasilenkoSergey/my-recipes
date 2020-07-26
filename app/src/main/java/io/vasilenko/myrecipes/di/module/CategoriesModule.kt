@@ -1,9 +1,9 @@
-package io.vasilenko.myrecipes.di.catalog
+package io.vasilenko.myrecipes.di.module
 
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import io.vasilenko.myrecipes.data.mapper.CategoriesMapper
+import io.vasilenko.myrecipes.data.mapper.CategoriesDataMapper
 import io.vasilenko.myrecipes.data.repo.CategoriesRepository
 import io.vasilenko.myrecipes.domain.repo.CategoriesRepo
 import io.vasilenko.myrecipes.domain.usecase.LoadAllCategoriesUseCase
@@ -13,8 +13,8 @@ import io.vasilenko.myrecipes.domain.usecase.UseCase
 class CategoriesModule {
 
     @Provides
-    fun provideCategoriesMapper(): CategoriesMapper {
-        return CategoriesMapper()
+    fun provideCategoriesMapper(): CategoriesDataMapper {
+        return CategoriesDataMapper()
     }
 }
 
