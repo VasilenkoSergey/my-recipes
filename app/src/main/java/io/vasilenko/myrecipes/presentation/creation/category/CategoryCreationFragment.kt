@@ -23,7 +23,7 @@ class CategoryCreationFragment : Fragment(R.layout.fragment_creation_category) {
 
     private fun setupView() {
         with(binding) {
-            toolbar.title = getString(R.string.create_recipe_title)
+            toolbar.title = getString(R.string.create_category_title)
             toolbar.setNavigationOnClickListener { close() }
         }
 
