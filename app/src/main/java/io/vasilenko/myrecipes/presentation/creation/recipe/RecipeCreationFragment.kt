@@ -32,7 +32,7 @@ class RecipeCreationFragment : Fragment(R.layout.fragment_creation_recipe) {
     private fun setupView() {
         with(binding) {
             toolbar.title = getString(R.string.create_recipe_title)
-            toolbar.setNavigationOnClickListener { close() }
+            toolbar.setNavigationOnClickListener { activity?.onBackPressed() }
         }
 
         val createBtn = binding.createBtn

@@ -32,7 +32,7 @@ class CategoryCreationFragment : Fragment(R.layout.fragment_creation_category) {
     private fun setupView() {
         with(binding) {
             toolbar.title = getString(R.string.create_category_title)
-            toolbar.setNavigationOnClickListener { close() }
+            toolbar.setNavigationOnClickListener { activity?.onBackPressed() }
         }
 
         val createBtn = binding.createBtn
