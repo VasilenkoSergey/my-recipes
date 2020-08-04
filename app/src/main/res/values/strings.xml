@@ -12,4 +12,7 @@
     <string name="name_hint">Название</string>
     <string name="create_recipe_title">Новый рецепт</string>
     <string name="create_category_title">Новая категория</string>
+    <string name="dialog_ok">Да</string>
+    <string name="dialog_cancel">Нет</string>
+    <string name="dialog_create_cancel">Хотите отменить создание?</string>
 </resources>

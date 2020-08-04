@@ -22,12 +22,25 @@
         android:id="@+id/categoryCreationFragment"
         android:name="io.vasilenko.myrecipes.presentation.creation.category.CategoryCreationFragment"
         android:label="CreateCategoryFragment"
-        tools:layout="@layout/fragment_creation_category" />
+        tools:layout="@layout/fragment_creation_category">
+        <action
+            android:id="@+id/action_categoryCreationFragment_to_creation_cancel_dialog"
+            app:destination="@id/creation_cancel_dialog" />
+    </fragment>
 
     <fragment
         android:id="@+id/recipeCreationFragment"
         android:name="io.vasilenko.myrecipes.presentation.creation.recipe.RecipeCreationFragment"
         android:label="CreateRecipeFragment"
-        tools:layout="@layout/fragment_creation_recipe" />
+        tools:layout="@layout/fragment_creation_recipe">
+        <action
+            android:id="@+id/action_recipeCreationFragment_to_creation_cancel_dialog"
+            app:destination="@id/creation_cancel_dialog" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/creation_cancel_dialog"
+        android:name="io.vasilenko.myrecipes.presentation.creation.CreationCancelDialogFragment"
+        tools:layout="@layout/dialog_creation_cancel" />
 
 </navigation>
