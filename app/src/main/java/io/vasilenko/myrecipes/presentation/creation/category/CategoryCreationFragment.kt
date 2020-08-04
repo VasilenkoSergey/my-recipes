@@ -32,7 +32,7 @@ class CategoryCreationFragment : Fragment(R.layout.fragment_creation_category) {
     private fun setupView() {
         with(binding) {
             toolbar.title = getString(R.string.create_category_title)
-            toolbar.setNavigationOnClickListener { requireActivity().onBackPressed() }
+            toolbar.setNavigationOnClickListener { close() }
         }
 
         val createBtn = binding.createBtn
@@ -55,7 +55,7 @@ class CategoryCreationFragment : Fragment(R.layout.fragment_creation_category) {
             })
 
         navController.currentBackStackEntry?.savedStateHandle?.getLiveData<Boolean>(CANCELLED_FLAG)
-            ?.observe(viewLifecycleOwner, Observer { if (it) close() })
+            ?.observe(viewLifecycleOwner, Observer { isCancelled -> if (isCancelled) close() })
     }
 
     private fun close() {

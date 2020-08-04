@@ -37,9 +37,7 @@ class CreationCancelDialogFragment : DialogFragment() {
 
     private fun close(isExitConfirmed: Boolean) {
         val navController = findNavController()
-        if (isExitConfirmed) {
-            navController.previousBackStackEntry?.savedStateHandle?.set(CANCELLED_FLAG, true)
-        }
+        navController.previousBackStackEntry?.savedStateHandle?.set(CANCELLED_FLAG, isExitConfirmed)
         navController.popBackStack()
     }
 

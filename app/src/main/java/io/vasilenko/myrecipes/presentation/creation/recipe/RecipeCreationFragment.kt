@@ -55,7 +55,7 @@ class RecipeCreationFragment : Fragment(R.layout.fragment_creation_recipe) {
             })
 
         navController.currentBackStackEntry?.savedStateHandle?.getLiveData<Boolean>(CANCELLED_FLAG)
-            ?.observe(viewLifecycleOwner, Observer { if (it) close() })
+            ?.observe(viewLifecycleOwner, Observer { isCancelled -> if (isCancelled) close() })
     }
 
     private fun close() {
