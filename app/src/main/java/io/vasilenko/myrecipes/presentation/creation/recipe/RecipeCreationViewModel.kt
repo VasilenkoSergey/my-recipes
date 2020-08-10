@@ -24,7 +24,14 @@ class RecipeCreationViewModel @Inject constructor(
     private val _categories = MutableLiveData<List<CategoryModel>>()
     val categories: LiveData<List<CategoryModel>> = _categories
 
+    private val _isCreateButtonEnabled = MutableLiveData<Boolean>()
+    val isCreateButtonEnabled: LiveData<Boolean> = _isCreateButtonEnabled
+
+    private var title: String? = ""
+
     init {
+        _isCreateButtonEnabled.value = false
+
         viewModelScope.launch {
             _categories.postValue(
                 loadAllCategoriesUseCase.execute().map {
@@ -36,6 +43,19 @@ class RecipeCreationViewModel @Inject constructor(
                 }
             )
         }
+    }
+
+    fun afterTitleTextChanged(text: String) {
+        title = text
+        checkData()
+    }
+
+    private fun checkData() {
+        _isCreateButtonEnabled.value = isTitleValid()
+    }
+
+    private fun isTitleValid(): Boolean? {
+        return title?.isNotBlank()
     }
 
     fun createRecipe(recipe: RecipeModel) {

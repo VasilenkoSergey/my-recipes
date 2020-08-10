@@ -6,6 +6,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -40,6 +41,10 @@ class RecipeCreationFragment : Fragment(R.layout.fragment_creation_recipe) {
             toolbar.setNavigationOnClickListener { activity?.onBackPressed() }
         }
 
+        viewModel.isCreateButtonEnabled.observe(viewLifecycleOwner, Observer {
+            setCreateButtonAccess(it)
+        })
+
         viewModel.categories.observe(viewLifecycleOwner, Observer {
             val adapter = ArrayAdapter(requireContext(), R.layout.item_category_dropdown, it)
             binding.categoryEditText.setAdapter(adapter)
@@ -57,6 +62,12 @@ class RecipeCreationFragment : Fragment(R.layout.fragment_creation_recipe) {
             }
             close()
         }
+
+        binding.nameEditText.doAfterTextChanged { viewModel.afterTitleTextChanged(it.toString()) }
+    }
+
+    private fun setCreateButtonAccess(isEnabled: Boolean) {
+        binding.createBtn.isEnabled = isEnabled
     }
 
     private fun setupBackPress() {
