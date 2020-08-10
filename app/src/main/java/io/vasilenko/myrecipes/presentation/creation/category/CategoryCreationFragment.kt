@@ -3,6 +3,7 @@ package io.vasilenko.myrecipes.presentation.creation.category
 import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -35,6 +36,10 @@ class CategoryCreationFragment : Fragment(R.layout.fragment_creation_category) {
             toolbar.setNavigationOnClickListener { activity?.onBackPressed() }
         }
 
+        viewModel.isCreateButtonEnabled.observe(viewLifecycleOwner, Observer {
+            setCreateButtonAccess(it)
+        })
+
         val createBtn = binding.createBtn
         createBtn.setOnClickListener {
             val title = binding.nameEditText.text.toString()
@@ -43,6 +48,11 @@ class CategoryCreationFragment : Fragment(R.layout.fragment_creation_category) {
             }
             close()
         }
+        binding.nameEditText.doAfterTextChanged { viewModel.afterNameTextChanged(it.toString()) }
+    }
+
+    private fun setCreateButtonAccess(isEnabled: Boolean) {
+        binding.createBtn.isEnabled = isEnabled
     }
 
     private fun setupBackPress() {
