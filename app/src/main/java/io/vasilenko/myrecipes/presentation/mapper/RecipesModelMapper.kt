@@ -8,7 +8,8 @@ class RecipesModelMapper {
     fun mapRecipeModelToEntity(recipe: RecipeModel): RecipeEntity {
         return RecipeEntity(
             id = recipe.id,
-            name = recipe.title
+            name = recipe.title,
+            categoryId = recipe.categoryId
         )
     }
 }

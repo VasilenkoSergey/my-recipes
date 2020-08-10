@@ -2,6 +2,9 @@ package io.vasilenko.myrecipes.presentation.creation.recipe
 
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -12,6 +15,7 @@ import io.vasilenko.myrecipes.R
 import io.vasilenko.myrecipes.databinding.FragmentCreationRecipeBinding
 import io.vasilenko.myrecipes.di.component.RecipeCreationComponent
 import io.vasilenko.myrecipes.presentation.common.viewBinding
+import io.vasilenko.myrecipes.presentation.model.CategoryModel
 import io.vasilenko.myrecipes.presentation.model.RecipeModel
 
 class RecipeCreationFragment : Fragment(R.layout.fragment_creation_recipe) {
@@ -21,6 +25,7 @@ class RecipeCreationFragment : Fragment(R.layout.fragment_creation_recipe) {
     private val viewModel by viewModels<RecipeCreationViewModel> { component.viewModelFactory() }
 
     private lateinit var navController: NavController
+    private var categoryId: Long? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -35,11 +40,20 @@ class RecipeCreationFragment : Fragment(R.layout.fragment_creation_recipe) {
             toolbar.setNavigationOnClickListener { activity?.onBackPressed() }
         }
 
+        viewModel.categories.observe(viewLifecycleOwner, Observer {
+            val adapter = ArrayAdapter(requireContext(), R.layout.item_category_dropdown, it)
+            binding.categoryEditText.setAdapter(adapter)
+            binding.categoryEditText.onItemClickListener = AdapterView.OnItemClickListener { parent, _, position, _ ->
+                val category = parent.getItemAtPosition(position) as CategoryModel
+                categoryId = category.id
+            }
+        })
+
         val createBtn = binding.createBtn
         createBtn.setOnClickListener {
             val title = binding.nameEditText.text.toString()
             title.let {
-                viewModel.createRecipe(RecipeModel(title = title, image = ""))
+                viewModel.createRecipe(RecipeModel(title = title, image = "", categoryId = categoryId))
             }
             close()
         }
