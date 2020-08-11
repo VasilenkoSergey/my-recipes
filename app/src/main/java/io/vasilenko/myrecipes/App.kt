@@ -2,7 +2,7 @@ package io.vasilenko.myrecipes
 
 import android.app.Application
 import io.vasilenko.myrecipes.di.DI
-import io.vasilenko.myrecipes.di.DaggerAppComponent
+import io.vasilenko.myrecipes.di.component.DaggerAppComponent
 
 class App : Application() {
 
