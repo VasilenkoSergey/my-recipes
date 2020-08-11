@@ -9,4 +9,11 @@
     <string name="create_category">Создать категорию</string>
     <string name="create_recipe">Создать рецепт</string>
     <string name="more">Еще</string>
+    <string name="name_hint">Название</string>
+    <string name="create_recipe_title">Новый рецепт</string>
+    <string name="create_category_title">Новая категория</string>
+    <string name="dialog_ok">Да</string>
+    <string name="dialog_cancel">Нет</string>
+    <string name="dialog_create_cancel">Хотите отменить создание?</string>
+    <string name="category_hint">Категория</string>
 </resources>

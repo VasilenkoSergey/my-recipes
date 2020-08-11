@@ -7,7 +7,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import io.vasilenko.myrecipes.R
 import io.vasilenko.myrecipes.databinding.FragmentCatalogBinding
-import io.vasilenko.myrecipes.di.catalog.CatalogComponent
+import io.vasilenko.myrecipes.di.component.CatalogComponent
+import io.vasilenko.myrecipes.presentation.catalog.adapter.CatalogAdapter
 import io.vasilenko.myrecipes.presentation.common.viewBinding
 
 class CatalogFragment : Fragment(R.layout.fragment_catalog) {
@@ -19,6 +20,7 @@ class CatalogFragment : Fragment(R.layout.fragment_catalog) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.onViewCreated()
 
         with(binding) {
             recyclerView.adapter = adapter

@@ -5,4 +5,6 @@ import io.vasilenko.myrecipes.domain.entity.RecipeEntity
 interface RecipesRepo {
 
     suspend fun findAll(): List<RecipeEntity>
+
+    suspend fun save(recipe: RecipeEntity)
 }
