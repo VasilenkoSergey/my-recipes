@@ -16,6 +16,7 @@ import io.vasilenko.myrecipes.domain.usecase.CreateRecipeUseCase
 import io.vasilenko.myrecipes.domain.usecase.LoadAllCategoriesUseCase
 import io.vasilenko.myrecipes.domain.usecase.UseCase
 import io.vasilenko.myrecipes.presentation.creation.recipe.RecipeCreationViewModel
+import io.vasilenko.myrecipes.presentation.mapper.CategoriesModelMapper
 import io.vasilenko.myrecipes.presentation.mapper.RecipesModelMapper
 
 @Module
@@ -34,6 +35,11 @@ class RecipeModule {
     @Provides
     fun provideCategoriesDataMapper(): CategoriesDataMapper {
         return CategoriesDataMapper()
+    }
+
+    @Provides
+    fun provideCategoriesModelMapper(): CategoriesModelMapper {
+        return CategoriesModelMapper()
     }
 }
 

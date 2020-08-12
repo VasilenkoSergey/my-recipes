@@ -8,6 +8,7 @@ import io.vasilenko.myrecipes.data.repo.RecipesRepository
 import io.vasilenko.myrecipes.domain.repo.RecipesRepo
 import io.vasilenko.myrecipes.domain.usecase.LoadAllRecipesUseCase
 import io.vasilenko.myrecipes.domain.usecase.UseCase
+import io.vasilenko.myrecipes.presentation.mapper.RecipesModelMapper
 
 @Module
 class RecipesModule {
@@ -15,6 +16,11 @@ class RecipesModule {
     @Provides
     fun provideRecipesMapper(): RecipesDataMapper {
         return RecipesDataMapper()
+    }
+
+    @Provides
+    fun provideRecipesModelMapper(): RecipesModelMapper {
+        return RecipesModelMapper()
     }
 }
 
