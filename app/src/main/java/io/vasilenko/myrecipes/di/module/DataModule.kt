@@ -24,9 +24,7 @@ class DataModule {
             context,
             RecipesDatabase::class.java,
             "recipes_db"
-        )
-            .createFromAsset("recipes_db.db")
-            .build()
+        ).build()
     }
 
     @Singleton
