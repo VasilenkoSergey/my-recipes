@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Мои рецепты</string>
     <string name="catalog_bottom_menu_title">Каталог</string>
+    <string name="favorite_bottom_menu_title">Избранное</string>
     <string name="cooking_bottom_menu_title">Готовка</string>
     <string name="basket_bottom_menu_title">Корзина</string>
     <string name="more_bottom_menu_title">Еще</string>

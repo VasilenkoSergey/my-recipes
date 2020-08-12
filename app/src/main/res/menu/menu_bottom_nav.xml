@@ -5,6 +5,10 @@
         android:icon="@drawable/ic_home"
         android:title="@string/catalog_bottom_menu_title" />
     <item
+        android:id="@+id/favorite_navigation"
+        android:icon="@drawable/ic_favorite"
+        android:title="@string/favorite_bottom_menu_title" />
+    <item
         android:id="@+id/cooking_navigation"
         android:icon="@drawable/ic_food"
         android:title="@string/cooking_bottom_menu_title" />
