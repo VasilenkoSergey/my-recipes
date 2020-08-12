@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/cooking_navigation"
+    app:startDestination="@id/navCooking">
+
+    <fragment
+        android:id="@+id/navCooking"
+        android:name="io.vasilenko.myrecipes.presentation.cooking.CookingFragment"
+        android:label="CookingFragment" />
+</navigation>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/basket_navigation"
+    app:startDestination="@id/navBasket">
+
+    <fragment
+        android:id="@+id/navBasket"
+        android:name="io.vasilenko.myrecipes.presentation.basket.BasketFragment"
+        android:label="BasketFragment" />
+</navigation>
