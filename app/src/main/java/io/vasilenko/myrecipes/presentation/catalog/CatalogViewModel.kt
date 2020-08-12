@@ -7,7 +7,7 @@ import io.vasilenko.myrecipes.domain.entity.CategoryEntity
 import io.vasilenko.myrecipes.domain.entity.RecipeEntity
 import io.vasilenko.myrecipes.domain.usecase.LoadAllCategoriesUseCase
 import io.vasilenko.myrecipes.domain.usecase.LoadAllRecipesUseCase
-import io.vasilenko.myrecipes.presentation.catalog.adapter.CatalogGroupItem
+import io.vasilenko.myrecipes.presentation.catalog.adapter.CatalogGroupEmptyItem
 import io.vasilenko.myrecipes.presentation.common.ListItem
 import io.vasilenko.myrecipes.presentation.mapper.CategoriesModelMapper
 import io.vasilenko.myrecipes.presentation.mapper.RecipesModelMapper
@@ -22,40 +22,42 @@ class CatalogViewModel @Inject constructor(
     private val recipesMapper: RecipesModelMapper
 ) : ViewModel() {
 
+    private val catalogItems = mutableListOf<ListItem>()
+
     val catalog: LiveData<List<ListItem>> get() = getCatalogData().asLiveData()
 
     private fun getCatalogData(): Flow<List<ListItem>> = combine(
         loadAllCategoriesUseCase.execute(),
         loadAllRecipesUseCase.execute()
     ) { categories, recipes ->
-        mapItemsToCatalog(categories, recipes)
+        addItemsToCatalog(categories, recipes)
     }
 
-    private fun mapItemsToCatalog(
+    private fun addItemsToCatalog(
         categories: List<CategoryEntity>,
         recipes: List<RecipeEntity>
     ): List<ListItem> {
-        val catalog = mutableListOf<ListItem>()
-        val categoryItems = mapCategoriesToItems(categories)
-        val recipeItems = mapRecipesToItems(recipes)
-        if (categoryItems.recipes.isNotEmpty()) catalog.add(categoryItems)
-        if (recipeItems.recipes.isNotEmpty()) catalog.add(recipeItems)
-        return catalog
+        addCategories(categories)
+        addRecipes(recipes)
+
+        return if (catalogItems.isEmpty()) {
+            listOf(CatalogGroupEmptyItem("Каталог пуст"))
+        } else {
+            catalogItems
+        }
     }
 
-    private fun mapCategoriesToItems(categories: List<CategoryEntity>): CatalogGroupItem {
-        val items = categoriesMapper.mapEntitiesToListItems(categories)
-        return CatalogGroupItem(
-            "Категории",
-            items
-        )
+    private fun addCategories(categories: List<CategoryEntity>) {
+        val categoryItems = categoriesMapper.mapEntitiesToCatalogGroup(categories, "Категории")
+        if (categoryItems.recipes.isNotEmpty()) {
+            catalogItems.add(categoryItems)
+        }
     }
 
-    private fun mapRecipesToItems(recipes: List<RecipeEntity>): CatalogGroupItem {
-        val items = recipesMapper.mapEntitiesToListItems(recipes)
-        return CatalogGroupItem(
-            "Рецепты",
-            items
-        )
+    private fun addRecipes(recipes: List<RecipeEntity>) {
+        val recipeItems = recipesMapper.mapEntitiesToCatalogGroup(recipes, "Рецепты")
+        if (recipeItems.recipes.isNotEmpty()) {
+            catalogItems.add(recipeItems)
+        }
     }
 }
