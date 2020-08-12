@@ -18,4 +18,6 @@
     <string name="dialog_create_cancel">Хотите отменить создание?</string>
     <string name="category_hint">Категория</string>
     <string name="empty_catalog">Каталог пуст</string>
+    <string name="recipes">Рецепты</string>
+    <string name="categories">Категории</string>
 </resources>

@@ -3,6 +3,8 @@ package io.vasilenko.myrecipes.presentation.catalog
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
+import io.vasilenko.myrecipes.R
+import io.vasilenko.myrecipes.core.resources.ResourceProvider
 import io.vasilenko.myrecipes.domain.entity.CategoryEntity
 import io.vasilenko.myrecipes.domain.entity.RecipeEntity
 import io.vasilenko.myrecipes.domain.usecase.LoadAllCategoriesUseCase
@@ -19,7 +21,8 @@ class CatalogViewModel @Inject constructor(
     private val loadAllCategoriesUseCase: LoadAllCategoriesUseCase,
     private val categoriesMapper: CategoriesModelMapper,
     private val loadAllRecipesUseCase: LoadAllRecipesUseCase,
-    private val recipesMapper: RecipesModelMapper
+    private val recipesMapper: RecipesModelMapper,
+    private val resources: ResourceProvider
 ) : ViewModel() {
 
     val catalog: LiveData<List<ListItem>> get() = getCatalogData().asLiveData()
@@ -53,7 +56,10 @@ class CatalogViewModel @Inject constructor(
         categories: List<CategoryEntity>,
         catalogItems: MutableList<ListItem>
     ) {
-        val categoryItems = categoriesMapper.mapEntitiesToCatalogGroup(categories, "Категории")
+        val categoryItems = categoriesMapper.mapEntitiesToCatalogGroup(
+            categories,
+            resources.string(R.string.categories)
+        )
         if (categoryItems.recipes.isNotEmpty()) {
             catalogItems.add(categoryItems)
         }
@@ -63,7 +69,8 @@ class CatalogViewModel @Inject constructor(
         recipes: List<RecipeEntity>,
         catalogItems: MutableList<ListItem>
     ) {
-        val recipeItems = recipesMapper.mapEntitiesToCatalogGroup(recipes, "Рецепты")
+        val recipeItems =
+            recipesMapper.mapEntitiesToCatalogGroup(recipes, resources.string(R.string.recipes))
         if (recipeItems.recipes.isNotEmpty()) {
             catalogItems.add(recipeItems)
         }
