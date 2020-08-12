@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import io.vasilenko.myrecipes.R
 import io.vasilenko.myrecipes.databinding.FragmentCatalogBinding
 import io.vasilenko.myrecipes.di.component.CatalogComponent
@@ -20,12 +21,18 @@ class CatalogFragment : Fragment(R.layout.fragment_catalog) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val navController = findNavController()
 
         with(binding) {
             recyclerView.adapter = adapter
+
             viewModel.catalog.observe(viewLifecycleOwner, Observer {
                 adapter.items = it
             })
+
+            fab.setOnClickListener {
+                navController.navigate(R.id.action_navCatalog_to_navCreation)
+            }
         }
     }
 }

@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigation)
         val navGraphIds = listOf(
             R.navigation.catalog_navigation,
-            R.navigation.creation_navigation,
             R.navigation.more_navigation
         )
         val controller = bottomNavigationView.setupWithNavController(
@@ -61,7 +60,6 @@ class MainActivity : AppCompatActivity() {
             Log.d("MainActivity", destination.id.toString())
             when (destination.id) {
                 R.id.navCatalog -> showBottomNav()
-                R.id.navCreation -> showBottomNav()
                 R.id.navMore -> showBottomNav()
                 else -> hideBottomNav()
             }
