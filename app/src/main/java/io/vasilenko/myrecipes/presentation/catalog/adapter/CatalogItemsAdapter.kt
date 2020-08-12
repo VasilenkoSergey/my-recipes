@@ -5,6 +5,9 @@ import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import io.vasilenko.myrecipes.databinding.ItemCatalogCategoryBinding
 import io.vasilenko.myrecipes.databinding.ItemCatalogRecipeBinding
 import io.vasilenko.myrecipes.databinding.ItemCatalogRecipeFavoriteBinding
+import io.vasilenko.myrecipes.presentation.catalog.model.CatalogCategoryModel
+import io.vasilenko.myrecipes.presentation.catalog.model.CatalogFavoriteModel
+import io.vasilenko.myrecipes.presentation.catalog.model.CatalogRecipeModel
 import io.vasilenko.myrecipes.presentation.common.BaseDiffUtilItemCallback
 import io.vasilenko.myrecipes.presentation.common.ListItem
 
@@ -12,13 +15,13 @@ class CatalogItemsAdapter : AsyncListDifferDelegationAdapter<ListItem>(BaseDiffU
 
     init {
         delegatesManager
-            .addDelegate(favoriteRecipesDelegate())
+            .addDelegate(favoritesDelegate())
             .addDelegate(categoriesDelegate())
             .addDelegate(recipesDelegate())
     }
 
-    private fun favoriteRecipesDelegate() =
-        adapterDelegateViewBinding<CatalogFavoriteRecipeItem, ListItem, ItemCatalogRecipeFavoriteBinding>(
+    private fun favoritesDelegate() =
+        adapterDelegateViewBinding<CatalogFavoriteModel, ListItem, ItemCatalogRecipeFavoriteBinding>(
             { inflater, container ->
                 ItemCatalogRecipeFavoriteBinding.inflate(
                     inflater,
@@ -35,7 +38,7 @@ class CatalogItemsAdapter : AsyncListDifferDelegationAdapter<ListItem>(BaseDiffU
         }
 
     private fun recipesDelegate() =
-        adapterDelegateViewBinding<CatalogRecipeItem, ListItem, ItemCatalogRecipeBinding>(
+        adapterDelegateViewBinding<CatalogRecipeModel, ListItem, ItemCatalogRecipeBinding>(
             { inflater, container -> ItemCatalogRecipeBinding.inflate(inflater, container, false) }
         ) {
             bind {
@@ -46,7 +49,7 @@ class CatalogItemsAdapter : AsyncListDifferDelegationAdapter<ListItem>(BaseDiffU
         }
 
     private fun categoriesDelegate() =
-        adapterDelegateViewBinding<CatalogCategoryItem, ListItem, ItemCatalogCategoryBinding>(
+        adapterDelegateViewBinding<CatalogCategoryModel, ListItem, ItemCatalogCategoryBinding>(
             { inflater, container ->
                 ItemCatalogCategoryBinding.inflate(
                     inflater,

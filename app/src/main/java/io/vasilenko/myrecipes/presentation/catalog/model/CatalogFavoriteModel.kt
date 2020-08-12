@@ -1,8 +1,8 @@
-package io.vasilenko.myrecipes.presentation.catalog.adapter
+package io.vasilenko.myrecipes.presentation.catalog.model
 
 import io.vasilenko.myrecipes.presentation.common.ListItem
 
-data class CatalogFavoriteRecipeItem(
+data class CatalogFavoriteModel(
     val id: Long,
     val title: String,
     val image: String

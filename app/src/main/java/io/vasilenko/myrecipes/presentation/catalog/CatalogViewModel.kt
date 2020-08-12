@@ -7,7 +7,7 @@ import io.vasilenko.myrecipes.domain.entity.CategoryEntity
 import io.vasilenko.myrecipes.domain.entity.RecipeEntity
 import io.vasilenko.myrecipes.domain.usecase.LoadAllCategoriesUseCase
 import io.vasilenko.myrecipes.domain.usecase.LoadAllRecipesUseCase
-import io.vasilenko.myrecipes.presentation.catalog.adapter.CatalogGroupEmptyItem
+import io.vasilenko.myrecipes.presentation.catalog.model.CatalogGroupEmptyModel
 import io.vasilenko.myrecipes.presentation.common.ListItem
 import io.vasilenko.myrecipes.presentation.mapper.CategoriesModelMapper
 import io.vasilenko.myrecipes.presentation.mapper.RecipesModelMapper
@@ -41,7 +41,9 @@ class CatalogViewModel @Inject constructor(
         addRecipes(recipes)
 
         return if (catalogItems.isEmpty()) {
-            listOf(CatalogGroupEmptyItem("Каталог пуст"))
+            listOf(
+                CatalogGroupEmptyModel("Каталог пуст")
+            )
         } else {
             catalogItems
         }

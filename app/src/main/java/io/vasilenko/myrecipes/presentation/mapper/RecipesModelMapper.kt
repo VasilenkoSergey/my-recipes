@@ -1,8 +1,8 @@
 package io.vasilenko.myrecipes.presentation.mapper
 
 import io.vasilenko.myrecipes.domain.entity.RecipeEntity
-import io.vasilenko.myrecipes.presentation.catalog.adapter.CatalogGroupItem
-import io.vasilenko.myrecipes.presentation.catalog.adapter.CatalogRecipeItem
+import io.vasilenko.myrecipes.presentation.catalog.model.CatalogGroupModel
+import io.vasilenko.myrecipes.presentation.catalog.model.CatalogRecipeModel
 import io.vasilenko.myrecipes.presentation.model.RecipeModel
 
 class RecipesModelMapper {
@@ -18,15 +18,15 @@ class RecipesModelMapper {
     fun mapEntitiesToCatalogGroup(
         recipes: List<RecipeEntity>,
         name: String
-    ): CatalogGroupItem {
+    ): CatalogGroupModel {
         val items = recipes.map {
-            CatalogRecipeItem(
+            CatalogRecipeModel(
                 id = it.id,
                 title = it.name,
                 image = ""
             )
         }
-        return CatalogGroupItem(
+        return CatalogGroupModel(
             name,
             items
         )
