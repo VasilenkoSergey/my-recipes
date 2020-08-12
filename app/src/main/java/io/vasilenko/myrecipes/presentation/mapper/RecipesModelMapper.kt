@@ -3,6 +3,7 @@ package io.vasilenko.myrecipes.presentation.mapper
 import io.vasilenko.myrecipes.domain.entity.RecipeEntity
 import io.vasilenko.myrecipes.presentation.catalog.model.CatalogGroupModel
 import io.vasilenko.myrecipes.presentation.catalog.model.CatalogRecipeModel
+import io.vasilenko.myrecipes.presentation.catalog.model.CatalogVerticalGroupModel
 import io.vasilenko.myrecipes.presentation.model.RecipeModel
 
 class RecipesModelMapper {
@@ -18,7 +19,7 @@ class RecipesModelMapper {
     fun mapEntitiesToCatalogGroup(
         recipes: List<RecipeEntity>,
         name: String
-    ): CatalogGroupModel {
+    ): CatalogVerticalGroupModel {
         val items = recipes.map {
             CatalogRecipeModel(
                 id = it.id,
@@ -26,7 +27,7 @@ class RecipesModelMapper {
                 image = ""
             )
         }
-        return CatalogGroupModel(
+        return CatalogVerticalGroupModel(
             name,
             items
         )

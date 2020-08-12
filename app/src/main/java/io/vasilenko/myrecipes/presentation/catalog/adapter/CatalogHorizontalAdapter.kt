@@ -3,21 +3,19 @@ package io.vasilenko.myrecipes.presentation.catalog.adapter
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import io.vasilenko.myrecipes.databinding.ItemCatalogCategoryBinding
-import io.vasilenko.myrecipes.databinding.ItemCatalogRecipeBinding
 import io.vasilenko.myrecipes.databinding.ItemCatalogRecipeFavoriteBinding
 import io.vasilenko.myrecipes.presentation.catalog.model.CatalogCategoryModel
 import io.vasilenko.myrecipes.presentation.catalog.model.CatalogFavoriteModel
-import io.vasilenko.myrecipes.presentation.catalog.model.CatalogRecipeModel
 import io.vasilenko.myrecipes.presentation.common.BaseDiffUtilItemCallback
 import io.vasilenko.myrecipes.presentation.common.ListItem
 
-class CatalogItemsAdapter : AsyncListDifferDelegationAdapter<ListItem>(BaseDiffUtilItemCallback()) {
+class CatalogHorizontalAdapter :
+    AsyncListDifferDelegationAdapter<ListItem>(BaseDiffUtilItemCallback()) {
 
     init {
         delegatesManager
             .addDelegate(favoritesDelegate())
             .addDelegate(categoriesDelegate())
-            .addDelegate(recipesDelegate())
     }
 
     private fun favoritesDelegate() =
@@ -29,17 +27,6 @@ class CatalogItemsAdapter : AsyncListDifferDelegationAdapter<ListItem>(BaseDiffU
                     false
                 )
             }
-        ) {
-            bind {
-                binding.title = item.title
-                binding.imageView.setBackgroundColor(-10354450)
-                binding.executePendingBindings()
-            }
-        }
-
-    private fun recipesDelegate() =
-        adapterDelegateViewBinding<CatalogRecipeModel, ListItem, ItemCatalogRecipeBinding>(
-            { inflater, container -> ItemCatalogRecipeBinding.inflate(inflater, container, false) }
         ) {
             bind {
                 binding.title = item.title

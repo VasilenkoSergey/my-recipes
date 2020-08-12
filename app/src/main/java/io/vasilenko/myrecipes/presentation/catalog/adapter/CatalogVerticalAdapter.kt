@@ -1,0 +1,27 @@
+package io.vasilenko.myrecipes.presentation.catalog.adapter
+
+import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
+import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
+import io.vasilenko.myrecipes.databinding.ItemCatalogRecipeBinding
+import io.vasilenko.myrecipes.presentation.catalog.model.CatalogRecipeModel
+import io.vasilenko.myrecipes.presentation.common.BaseDiffUtilItemCallback
+import io.vasilenko.myrecipes.presentation.common.ListItem
+
+class CatalogVerticalAdapter :
+    AsyncListDifferDelegationAdapter<ListItem>(BaseDiffUtilItemCallback()) {
+
+    init {
+        delegatesManager.addDelegate(recipesDelegate())
+    }
+
+    private fun recipesDelegate() =
+        adapterDelegateViewBinding<CatalogRecipeModel, ListItem, ItemCatalogRecipeBinding>(
+            { inflater, container -> ItemCatalogRecipeBinding.inflate(inflater, container, false) }
+        ) {
+            bind {
+                binding.title = item.title
+                binding.imageView.setBackgroundColor(-10354450)
+                binding.executePendingBindings()
+            }
+        }
+}
