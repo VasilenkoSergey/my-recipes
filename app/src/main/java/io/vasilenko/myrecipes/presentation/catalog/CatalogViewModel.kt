@@ -22,8 +22,6 @@ class CatalogViewModel @Inject constructor(
     private val recipesMapper: RecipesModelMapper
 ) : ViewModel() {
 
-    private val catalogItems = mutableListOf<ListItem>()
-
     val catalog: LiveData<List<ListItem>> get() = getCatalogData().asLiveData()
 
     private fun getCatalogData(): Flow<List<ListItem>> = combine(
@@ -37,8 +35,10 @@ class CatalogViewModel @Inject constructor(
         categories: List<CategoryEntity>,
         recipes: List<RecipeEntity>
     ): List<ListItem> {
-        addCategories(categories)
-        addRecipes(recipes)
+        val catalogItems = mutableListOf<ListItem>()
+
+        addCategories(categories, catalogItems)
+        addRecipes(recipes, catalogItems)
 
         return if (catalogItems.isEmpty()) {
             listOf(
@@ -49,14 +49,20 @@ class CatalogViewModel @Inject constructor(
         }
     }
 
-    private fun addCategories(categories: List<CategoryEntity>) {
+    private fun addCategories(
+        categories: List<CategoryEntity>,
+        catalogItems: MutableList<ListItem>
+    ) {
         val categoryItems = categoriesMapper.mapEntitiesToCatalogGroup(categories, "Категории")
         if (categoryItems.recipes.isNotEmpty()) {
             catalogItems.add(categoryItems)
         }
     }
 
-    private fun addRecipes(recipes: List<RecipeEntity>) {
+    private fun addRecipes(
+        recipes: List<RecipeEntity>,
+        catalogItems: MutableList<ListItem>
+    ) {
         val recipeItems = recipesMapper.mapEntitiesToCatalogGroup(recipes, "Рецепты")
         if (recipeItems.recipes.isNotEmpty()) {
             catalogItems.add(recipeItems)
