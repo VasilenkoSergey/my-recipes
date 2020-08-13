@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
+import androidx.navigation.Navigation.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.vasilenko.myrecipes.R
 import io.vasilenko.myrecipes.databinding.ActivityMainBinding
@@ -87,7 +88,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (supportFragmentManager.backStackEntryCount == 0) {
+        val start = findNavController(this, R.id.fragmentContainer).currentDestination?.id
+        if (start == R.id.navCatalog) {
             if (doubleBackToExitPressedOnce) {
                 super.onBackPressed()
                 return
@@ -99,7 +101,7 @@ class MainActivity : AppCompatActivity() {
                 doubleBackToExitPressedOnce = false
             }
         } else {
-            supportFragmentManager.popBackStack()
+            super.onBackPressed()
         }
     }
 }
