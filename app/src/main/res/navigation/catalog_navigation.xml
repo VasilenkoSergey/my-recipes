@@ -8,11 +8,14 @@
     <fragment
         android:id="@+id/navCatalog"
         android:name="io.vasilenko.myrecipes.presentation.catalog.CatalogFragment"
-        tools:layout="@layout/fragment_catalog"
-        android:label="HomeFragment" >
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_catalog">
         <action
-            android:id="@+id/action_navCatalog_to_navCreation"
-            app:destination="@id/navCreation" />
+            android:id="@+id/action_navCatalog_to_recipeCreationFragment"
+            app:destination="@id/recipeCreationFragment" />
+        <action
+            android:id="@+id/action_navCatalog_to_categoryCreationFragment"
+            app:destination="@id/categoryCreationFragment" />
     </fragment>
 
     <fragment
