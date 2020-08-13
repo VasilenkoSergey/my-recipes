@@ -3,19 +3,24 @@ package io.vasilenko.myrecipes.presentation
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.vasilenko.myrecipes.R
 import io.vasilenko.myrecipes.databinding.ActivityMainBinding
 import io.vasilenko.myrecipes.presentation.common.setupWithNavController
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
     private var currentNavController: LiveData<NavController>? = null
+    private var doubleBackToExitPressedOnce = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
@@ -79,5 +84,22 @@ class MainActivity : AppCompatActivity() {
 
     private fun showBottomNav() {
         bottomNavigation.visibility = View.VISIBLE
+    }
+
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount == 0) {
+            if (doubleBackToExitPressedOnce) {
+                super.onBackPressed()
+                return
+            }
+            doubleBackToExitPressedOnce = true
+            Toast.makeText(this, R.string.double_back_exit, Toast.LENGTH_SHORT).show()
+            lifecycleScope.launch {
+                delay(2000)
+                doubleBackToExitPressedOnce = false
+            }
+        } else {
+            supportFragmentManager.popBackStack()
+        }
     }
 }
