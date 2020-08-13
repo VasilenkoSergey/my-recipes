@@ -45,7 +45,7 @@ class CatalogViewModel @Inject constructor(
 
         return if (catalogItems.isEmpty()) {
             listOf(
-                CatalogEmptyGroupModel("Каталог пуст")
+                CatalogEmptyGroupModel(resources.string(R.string.empty_catalog))
             )
         } else {
             catalogItems
