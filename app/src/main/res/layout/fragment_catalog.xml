@@ -14,7 +14,7 @@
         android:paddingTop="24dp"
         android:paddingBottom="24dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_catalog" />
+        tools:listitem="@layout/item_catalog_categories" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"

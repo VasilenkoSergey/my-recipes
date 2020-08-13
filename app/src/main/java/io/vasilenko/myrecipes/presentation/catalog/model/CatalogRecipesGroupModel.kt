@@ -2,10 +2,9 @@ package io.vasilenko.myrecipes.presentation.catalog.model
 
 import io.vasilenko.myrecipes.presentation.common.ListItem
 
-data class CatalogFavoriteModel(
-    val id: Long,
+data class CatalogRecipesGroupModel(
     val title: String,
-    val image: String
+    val recipes: List<ListItem>
 ) : ListItem {
-    override val itemId: Long = id
+    override val itemId: Long = title.hashCode().toLong()
 }
