@@ -1,8 +1,8 @@
-package io.vasilenko.myrecipes.presentation.catalog.adapter
+package io.vasilenko.myrecipes.presentation.catalog.model
 
 import io.vasilenko.myrecipes.presentation.common.ListItem
 
-data class CatalogGroupItem(
+data class CatalogRecipesGroupModel(
     val title: String,
     val recipes: List<ListItem>
 ) : ListItem {

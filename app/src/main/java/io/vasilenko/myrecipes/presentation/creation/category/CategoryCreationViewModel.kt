@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import io.vasilenko.myrecipes.domain.usecase.CreateCategoryUseCase
 import io.vasilenko.myrecipes.presentation.mapper.CategoriesModelMapper
 import io.vasilenko.myrecipes.presentation.model.CategoryModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -30,17 +29,17 @@ class CategoryCreationViewModel @Inject constructor(
         checkData()
     }
 
+    fun saveCategory(category: CategoryModel) {
+        viewModelScope.launch {
+            createUseCase.createCategory(mapper.mapCategoryModelToEntity(category))
+        }
+    }
+
     private fun checkData() {
         _isCreateButtonEnabled.value = isNameValid()
     }
 
     private fun isNameValid(): Boolean? {
         return name?.isNotBlank()
-    }
-
-    fun saveCategory(category: CategoryModel) {
-        viewModelScope.launch(Dispatchers.IO) {
-            createUseCase.createCategory(mapper.mapCategoryModelToEntity(category))
-        }
     }
 }

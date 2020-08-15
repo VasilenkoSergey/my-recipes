@@ -5,9 +5,17 @@
         android:icon="@drawable/ic_home"
         android:title="@string/catalog_bottom_menu_title" />
     <item
-        android:id="@+id/creation_navigation"
-        android:icon="@drawable/ic_create"
-        android:title="@string/create_bottom_menu_title" />
+        android:id="@+id/favorite_navigation"
+        android:icon="@drawable/ic_favorite"
+        android:title="@string/favorite_bottom_menu_title" />
+    <item
+        android:id="@+id/cooking_navigation"
+        android:icon="@drawable/ic_food"
+        android:title="@string/cooking_bottom_menu_title" />
+    <item
+        android:id="@+id/basket_navigation"
+        android:icon="@drawable/ic_basket"
+        android:title="@string/basket_bottom_menu_title" />
     <item
         android:id="@+id/more_navigation"
         android:icon="@drawable/ic_more"

@@ -4,6 +4,8 @@ import io.vasilenko.myrecipes.data.dao.CategoriesDao
 import io.vasilenko.myrecipes.data.mapper.CategoriesDataMapper
 import io.vasilenko.myrecipes.domain.entity.CategoryEntity
 import io.vasilenko.myrecipes.domain.repo.CategoriesRepo
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class CategoriesRepository @Inject constructor(
@@ -11,7 +13,7 @@ class CategoriesRepository @Inject constructor(
     private val mapper: CategoriesDataMapper
 ) : CategoriesRepo {
 
-    override suspend fun findAll(): List<CategoryEntity> {
+    override fun findAll(): Flow<List<CategoryEntity>> {
         val categories = dao.findAll()
         return mapper.mapCategoriesToEntities(categories)
     }

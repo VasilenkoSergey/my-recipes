@@ -8,6 +8,7 @@ import io.vasilenko.myrecipes.data.repo.CategoriesRepository
 import io.vasilenko.myrecipes.domain.repo.CategoriesRepo
 import io.vasilenko.myrecipes.domain.usecase.LoadAllCategoriesUseCase
 import io.vasilenko.myrecipes.domain.usecase.UseCase
+import io.vasilenko.myrecipes.presentation.mapper.CategoriesModelMapper
 
 @Module
 class CategoriesModule {
@@ -15,6 +16,11 @@ class CategoriesModule {
     @Provides
     fun provideCategoriesMapper(): CategoriesDataMapper {
         return CategoriesDataMapper()
+    }
+
+    @Provides
+    fun provideCategoryMapper(): CategoriesModelMapper {
+        return CategoriesModelMapper()
     }
 }
 

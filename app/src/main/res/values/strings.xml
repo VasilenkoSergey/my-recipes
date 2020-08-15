@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">Мои рецепты</string>
+    <string name="double_back_exit">Нажмите еще раз для выхода</string>
     <string name="catalog_bottom_menu_title">Каталог</string>
-    <string name="create_bottom_menu_title">Добавить</string>
+    <string name="favorite_bottom_menu_title">Избранное</string>
+    <string name="cooking_bottom_menu_title">Готовка</string>
+    <string name="basket_bottom_menu_title">Корзина</string>
     <string name="more_bottom_menu_title">Еще</string>
     <string name="see_all">Смотреть все</string>
     <string name="create">Создать</string>
@@ -16,4 +19,7 @@
     <string name="dialog_cancel">Нет</string>
     <string name="dialog_create_cancel">Хотите отменить создание?</string>
     <string name="category_hint">Категория</string>
+    <string name="empty_catalog">Каталог пуст</string>
+    <string name="recipes">Рецепты</string>
+    <string name="categories">Категории</string>
 </resources>

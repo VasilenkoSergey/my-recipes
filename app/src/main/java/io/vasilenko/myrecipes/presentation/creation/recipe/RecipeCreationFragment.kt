@@ -26,6 +26,8 @@ class RecipeCreationFragment : Fragment(R.layout.fragment_creation_recipe) {
     private val viewModel by viewModels<RecipeCreationViewModel> { component.viewModelFactory() }
 
     private lateinit var navController: NavController
+
+    private lateinit var title: String
     private var categoryId: Long? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,22 +50,24 @@ class RecipeCreationFragment : Fragment(R.layout.fragment_creation_recipe) {
         viewModel.categories.observe(viewLifecycleOwner, Observer {
             val adapter = ArrayAdapter(requireContext(), R.layout.item_category_dropdown, it)
             binding.categoryEditText.setAdapter(adapter)
-            binding.categoryEditText.onItemClickListener = AdapterView.OnItemClickListener { parent, _, position, _ ->
-                val category = parent.getItemAtPosition(position) as CategoryModel
-                categoryId = category.id
-            }
+            binding.categoryEditText.onItemClickListener =
+                AdapterView.OnItemClickListener { parent, _, position, _ ->
+                    val category = parent.getItemAtPosition(position) as CategoryModel
+                    categoryId = category.id
+                }
         })
 
         val createBtn = binding.createBtn
         createBtn.setOnClickListener {
-            val title = binding.nameEditText.text.toString()
-            title.let {
-                viewModel.createRecipe(RecipeModel(title = title, image = "", categoryId = categoryId))
-            }
+            viewModel.createRecipe(RecipeModel(title = title, image = "", categoryId = categoryId))
             close()
         }
 
-        binding.nameEditText.doAfterTextChanged { viewModel.afterTitleTextChanged(it.toString()) }
+        binding.nameEditText.doAfterTextChanged {
+            val text = it.toString()
+            title = text
+            viewModel.afterTitleTextChanged(text)
+        }
     }
 
     private fun setCreateButtonAccess(isEnabled: Boolean) {

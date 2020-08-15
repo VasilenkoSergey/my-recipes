@@ -4,6 +4,7 @@ import dagger.BindsInstance
 import dagger.Component
 import io.vasilenko.myrecipes.core.FeatureScope
 import io.vasilenko.myrecipes.core.ViewModelFactory
+import io.vasilenko.myrecipes.core.resources.ResourceProvider
 import io.vasilenko.myrecipes.data.dao.CategoriesDao
 import io.vasilenko.myrecipes.data.dao.RecipesDao
 import io.vasilenko.myrecipes.di.DI
@@ -32,6 +33,9 @@ interface CatalogComponent {
         @BindsInstance
         fun recipesDao(dao: RecipesDao): Builder
 
+        @BindsInstance
+        fun resources(resources: ResourceProvider): Builder
+
         fun build(): CatalogComponent
     }
 
@@ -40,6 +44,7 @@ interface CatalogComponent {
             DaggerCatalogComponent.builder()
                 .categoriesDao(categoriesDao())
                 .recipesDao(recipesDao())
+                .resources(resources())
                 .build()
         }
     }

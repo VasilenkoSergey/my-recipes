@@ -1,10 +1,11 @@
 package io.vasilenko.myrecipes.domain.repo
 
 import io.vasilenko.myrecipes.domain.entity.RecipeEntity
+import kotlinx.coroutines.flow.Flow
 
 interface RecipesRepo {
 
-    suspend fun findAll(): List<RecipeEntity>
+    fun findAll(): Flow<List<RecipeEntity>>
 
     suspend fun save(recipe: RecipeEntity)
 }

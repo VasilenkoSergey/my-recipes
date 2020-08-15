@@ -23,6 +23,8 @@ class CategoryCreationFragment : Fragment(R.layout.fragment_creation_category) {
 
     private lateinit var navController: NavController
 
+    private lateinit var title: String
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = findNavController()
@@ -42,13 +44,14 @@ class CategoryCreationFragment : Fragment(R.layout.fragment_creation_category) {
 
         val createBtn = binding.createBtn
         createBtn.setOnClickListener {
-            val title = binding.nameEditText.text.toString()
-            title.let {
-                viewModel.saveCategory(CategoryModel(title = title, image = ""))
-            }
+            viewModel.saveCategory(CategoryModel(title = title, image = ""))
             close()
         }
-        binding.nameEditText.doAfterTextChanged { viewModel.afterNameTextChanged(it.toString()) }
+        binding.nameEditText.doAfterTextChanged {
+            val text = it.toString()
+            title = text
+            viewModel.afterNameTextChanged(text)
+        }
     }
 
     private fun setCreateButtonAccess(isEnabled: Boolean) {

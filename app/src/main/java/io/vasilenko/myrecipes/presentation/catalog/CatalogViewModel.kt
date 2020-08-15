@@ -1,80 +1,78 @@
 package io.vasilenko.myrecipes.presentation.catalog
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.asLiveData
+import io.vasilenko.myrecipes.R
+import io.vasilenko.myrecipes.core.resources.ResourceProvider
+import io.vasilenko.myrecipes.domain.entity.CategoryEntity
+import io.vasilenko.myrecipes.domain.entity.RecipeEntity
 import io.vasilenko.myrecipes.domain.usecase.LoadAllCategoriesUseCase
 import io.vasilenko.myrecipes.domain.usecase.LoadAllRecipesUseCase
-import io.vasilenko.myrecipes.presentation.catalog.adapter.CatalogCategoryItem
-import io.vasilenko.myrecipes.presentation.catalog.adapter.CatalogEmptyItem
-import io.vasilenko.myrecipes.presentation.catalog.adapter.CatalogGroupItem
-import io.vasilenko.myrecipes.presentation.catalog.adapter.CatalogRecipeItem
+import io.vasilenko.myrecipes.presentation.catalog.model.CatalogEmptyGroupModel
 import io.vasilenko.myrecipes.presentation.common.ListItem
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import io.vasilenko.myrecipes.presentation.mapper.CategoriesModelMapper
+import io.vasilenko.myrecipes.presentation.mapper.RecipesModelMapper
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
 import javax.inject.Inject
 
 class CatalogViewModel @Inject constructor(
     private val loadAllCategoriesUseCase: LoadAllCategoriesUseCase,
-    private val loadAllRecipesUseCase: LoadAllRecipesUseCase
+    private val categoriesMapper: CategoriesModelMapper,
+    private val loadAllRecipesUseCase: LoadAllRecipesUseCase,
+    private val recipesMapper: RecipesModelMapper,
+    private val resources: ResourceProvider
 ) : ViewModel() {
 
-    private val _data = MutableLiveData<List<ListItem>>()
-    val data: LiveData<List<ListItem>> = _data
+    val catalog: LiveData<List<ListItem>> get() = getCatalogData().asLiveData()
 
-    fun onViewCreated() {
-        viewModelScope.launch(Dispatchers.IO) {
-            val items = getItems()
-            _data.postValue(items)
+    private fun getCatalogData(): Flow<List<ListItem>> = combine(
+        loadAllCategoriesUseCase.execute(),
+        loadAllRecipesUseCase.execute()
+    ) { categories, recipes ->
+        addItemsToCatalog(categories, recipes)
+    }
+
+    private fun addItemsToCatalog(
+        categories: List<CategoryEntity>,
+        recipes: List<RecipeEntity>
+    ): List<ListItem> {
+        val catalogItems = mutableListOf<ListItem>()
+
+        addCategories(categories, catalogItems)
+        addRecipes(recipes, catalogItems)
+
+        return if (catalogItems.isEmpty()) {
+            listOf(
+                CatalogEmptyGroupModel(resources.string(R.string.empty_catalog))
+            )
+        } else {
+            catalogItems
         }
     }
 
-    private suspend fun getItems(): List<ListItem> {
-
-        val emptyFavorites = CatalogEmptyItem("Список избранного пуст")
-        val favoriteRecipes = emptyList<ListItem>()
-        val favoriteItems: List<ListItem>
-        favoriteItems =
-            if (favoriteRecipes.isNotEmpty()) favoriteRecipes else listOf(emptyFavorites)
-
-        val emptyRecipes = CatalogEmptyItem("Рецепты отсутствуют")
-        val recipes = loadAllRecipesUseCase.execute()
-            .map {
-                CatalogRecipeItem(
-                    id = it.id,
-                    title = it.name,
-                    image = ""
-                )
-            }
-        val recipeItems: List<ListItem>
-        recipeItems = if (recipes.isNotEmpty()) recipes else listOf(emptyRecipes)
-
-        val emptyCategories = CatalogEmptyItem("Категории не добавлены")
-        val categories = loadAllCategoriesUseCase.execute()
-            .map {
-                CatalogCategoryItem(
-                    id = it.id,
-                    title = it.name,
-                    image = ""
-                )
-            }
-        val categoryItems: List<ListItem>
-        categoryItems = if (categories.isNotEmpty()) categories else listOf(emptyCategories)
-
-        return listOf(
-            CatalogGroupItem(
-                "Избранное",
-                favoriteItems
-            ),
-            CatalogGroupItem(
-                "Рецепты",
-                recipeItems
-            ),
-            CatalogGroupItem(
-                "Категории",
-                categoryItems
-            )
+    private fun addCategories(
+        categories: List<CategoryEntity>,
+        catalogItems: MutableList<ListItem>
+    ) {
+        val categoryItems = categoriesMapper.mapEntitiesToCatalogGroup(
+            categories,
+            resources.string(R.string.categories)
         )
+        if (categoryItems.recipes.isNotEmpty()) {
+            catalogItems.add(categoryItems)
+        }
+    }
+
+    private fun addRecipes(
+        recipes: List<RecipeEntity>,
+        catalogItems: MutableList<ListItem>
+    ) {
+        val recipeItems =
+            recipesMapper.mapEntitiesToCatalogGroup(recipes, resources.string(R.string.recipes))
+        if (recipeItems.recipes.isNotEmpty()) {
+            catalogItems.add(recipeItems)
+        }
     }
 }
