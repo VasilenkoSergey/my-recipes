@@ -11,7 +11,8 @@ class RecipesModelMapper {
         return RecipeEntity(
             id = recipe.id,
             name = recipe.title,
-            categoryId = recipe.categoryId
+            categoryId = recipe.categoryId,
+            image = recipe.image
         )
     }
 
@@ -23,7 +24,7 @@ class RecipesModelMapper {
             CatalogRecipeModel(
                 id = it.id,
                 title = it.name,
-                image = ""
+                image = it.image
             )
         }
         return CatalogRecipesGroupModel(

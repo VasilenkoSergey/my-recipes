@@ -2,6 +2,7 @@ package io.vasilenko.myrecipes.presentation.catalog.adapter
 
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
+import io.vasilenko.myrecipes.core.ext.load
 import io.vasilenko.myrecipes.databinding.ItemCatalogRecipeBinding
 import io.vasilenko.myrecipes.presentation.catalog.model.CatalogRecipeModel
 import io.vasilenko.myrecipes.presentation.common.BaseDiffUtilItemCallback
@@ -21,7 +22,7 @@ class RecipesAdapter : AsyncListDifferDelegationAdapter<ListItem>(BaseDiffUtilIt
         ) {
             bind {
                 binding.title = item.title
-                binding.imageView.setBackgroundColor(-10354450)
+                binding.imageView.load(item.image)
                 binding.executePendingBindings()
             }
         }

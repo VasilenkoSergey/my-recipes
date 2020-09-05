@@ -49,11 +49,24 @@
         <action
             android:id="@+id/action_recipeCreationFragment_to_creation_cancel_dialog"
             app:destination="@id/creation_cancel_dialog" />
+        <action
+            android:id="@+id/action_recipeCreationFragment_to_image_picker_dialog"
+            app:destination="@id/image_picker_dialog" />
     </fragment>
 
     <dialog
         android:id="@+id/creation_cancel_dialog"
         android:name="io.vasilenko.myrecipes.presentation.creation.CreationCancelDialogFragment"
         tools:layout="@layout/dialog_creation_cancel" />
+
+    <dialog
+        android:id="@+id/image_picker_dialog"
+        android:name="io.vasilenko.myrecipes.presentation.imagepicker.ImagePickerDialog"
+        tools:layout="@layout/dialog_image_picker">
+        <argument
+            android:name="path"
+            app:argType="string"
+            android:defaultValue="" />
+    </dialog>
 
 </navigation>

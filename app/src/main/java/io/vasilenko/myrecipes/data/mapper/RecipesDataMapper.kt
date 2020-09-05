@@ -13,13 +13,14 @@ class RecipesDataMapper {
                 RecipeEntity(
                     id = it.id,
                     name = it.title,
-                    categoryId = it.categoryId
+                    categoryId = it.categoryId,
+                    image = it.image
                 )
             }
         }
     }
 
     fun mapEntityToRecipe(recipe: RecipeEntity): Recipe {
-        return Recipe(title = recipe.name, categoryId = recipe.categoryId)
+        return Recipe(title = recipe.name, categoryId = recipe.categoryId, image = recipe.image)
     }
 }

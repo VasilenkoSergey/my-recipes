@@ -2,6 +2,7 @@ package io.vasilenko.myrecipes.presentation.creation.recipe
 
 import androidx.lifecycle.*
 import io.vasilenko.myrecipes.domain.usecase.CreateRecipeUseCase
+import io.vasilenko.myrecipes.domain.usecase.DeleteImageUseCase
 import io.vasilenko.myrecipes.domain.usecase.LoadAllCategoriesUseCase
 import io.vasilenko.myrecipes.presentation.mapper.CategoriesModelMapper
 import io.vasilenko.myrecipes.presentation.mapper.RecipesModelMapper
@@ -16,7 +17,8 @@ class RecipeCreationViewModel @Inject constructor(
     private val createUseCase: CreateRecipeUseCase,
     private val mapper: RecipesModelMapper,
     private val categoriesMapper: CategoriesModelMapper,
-    private val loadAllCategoriesUseCase: LoadAllCategoriesUseCase
+    private val loadAllCategoriesUseCase: LoadAllCategoriesUseCase,
+    private val deleteImageUseCase: DeleteImageUseCase
 ) : ViewModel() {
 
     private val _isCreateButtonEnabled = MutableLiveData<Boolean>()
@@ -26,10 +28,6 @@ class RecipeCreationViewModel @Inject constructor(
 
     private var title: String? = ""
 
-    init {
-        _isCreateButtonEnabled.value = false
-    }
-
     fun afterTitleTextChanged(text: String) {
         title = text
         checkData()
@@ -38,6 +36,12 @@ class RecipeCreationViewModel @Inject constructor(
     fun createRecipe(recipe: RecipeModel) {
         viewModelScope.launch {
             createUseCase.createRecipe(mapper.mapRecipeModelToEntity(recipe))
+        }
+    }
+
+    fun onCancel(path: String) {
+        if (path.isNotEmpty()) {
+            deleteImageUseCase.perform(path)
         }
     }
 
