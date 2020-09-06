@@ -22,4 +22,8 @@
     <string name="empty_catalog">Каталог пуст</string>
     <string name="recipes">Рецепты</string>
     <string name="categories">Категории</string>
+    <string name="image_picker_header">Фото</string>
+    <string name="image_picker_camera">Камера</string>
+    <string name="image_picker_gallery">Галерея</string>
+    <string name="image_picker_delete">Удалить</string>
 </resources>

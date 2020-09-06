@@ -13,6 +13,7 @@ import io.vasilenko.myrecipes.data.repo.RecipesRepository
 import io.vasilenko.myrecipes.domain.repo.CategoriesRepo
 import io.vasilenko.myrecipes.domain.repo.RecipesRepo
 import io.vasilenko.myrecipes.domain.usecase.CreateRecipeUseCase
+import io.vasilenko.myrecipes.domain.usecase.DeleteImageUseCase
 import io.vasilenko.myrecipes.domain.usecase.LoadAllCategoriesUseCase
 import io.vasilenko.myrecipes.domain.usecase.UseCase
 import io.vasilenko.myrecipes.presentation.creation.recipe.RecipeCreationViewModel
@@ -57,6 +58,9 @@ abstract class RecipeBindsModule {
 
     @Binds
     abstract fun loadAllCategoriesUseCase(useCase: LoadAllCategoriesUseCase): UseCase
+
+    @Binds
+    abstract fun deleteImageUseCase(useCase: DeleteImageUseCase): UseCase
 
     @Binds
     @IntoMap

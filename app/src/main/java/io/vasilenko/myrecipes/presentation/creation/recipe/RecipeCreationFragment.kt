@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
@@ -13,11 +12,13 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import io.vasilenko.myrecipes.R
+import io.vasilenko.myrecipes.core.ext.loadSearched
 import io.vasilenko.myrecipes.databinding.FragmentCreationRecipeBinding
 import io.vasilenko.myrecipes.di.component.RecipeCreationComponent
 import io.vasilenko.myrecipes.presentation.common.viewBinding
 import io.vasilenko.myrecipes.presentation.model.CategoryModel
 import io.vasilenko.myrecipes.presentation.model.RecipeModel
+import io.vasilenko.myrecipes.presentation.creation.recipe.RecipeCreationFragmentDirections.Companion.actionRecipeCreationFragmentToImagePickerDialog as imagePickerAction
 
 class RecipeCreationFragment : Fragment(R.layout.fragment_creation_recipe) {
 
@@ -29,11 +30,13 @@ class RecipeCreationFragment : Fragment(R.layout.fragment_creation_recipe) {
 
     private lateinit var title: String
     private var categoryId: Long? = null
+    private var imagePath: String = ""
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = findNavController()
         setupView()
+        setupImage()
         setupBackPress()
     }
 
@@ -59,7 +62,13 @@ class RecipeCreationFragment : Fragment(R.layout.fragment_creation_recipe) {
 
         val createBtn = binding.createBtn
         createBtn.setOnClickListener {
-            viewModel.createRecipe(RecipeModel(title = title, image = "", categoryId = categoryId))
+            viewModel.createRecipe(
+                RecipeModel(
+                    title = title,
+                    image = imagePath,
+                    categoryId = categoryId
+                )
+            )
             close()
         }
 
@@ -84,7 +93,29 @@ class RecipeCreationFragment : Fragment(R.layout.fragment_creation_recipe) {
             })
 
         navController.currentBackStackEntry?.savedStateHandle?.getLiveData<Boolean>(CANCELLED_FLAG)
-            ?.observe(viewLifecycleOwner, Observer { isCancelled -> if (isCancelled) close() })
+            ?.observe(viewLifecycleOwner, Observer { isCancelled -> if (isCancelled) cancel() })
+    }
+
+    private fun setupImage() {
+        binding.imageView.setOnClickListener {
+            val action = imagePickerAction(imagePath)
+            navController.navigate(action)
+        }
+
+        val savedState = navController.currentBackStackEntry?.savedStateHandle
+        savedState?.getLiveData<String>(IMAGE_URI)?.observe(viewLifecycleOwner, Observer {
+            loadImage(it)
+        })
+    }
+
+    private fun loadImage(uri: String) {
+        binding.imageView.loadSearched(uri)
+        imagePath = uri
+    }
+
+    private fun cancel() {
+        viewModel.onCancel(imagePath)
+        close()
     }
 
     private fun close() {
@@ -93,5 +124,6 @@ class RecipeCreationFragment : Fragment(R.layout.fragment_creation_recipe) {
 
     companion object {
         const val CANCELLED_FLAG = "is_cancelled"
+        const val IMAGE_URI = "img_uri"
     }
 }
