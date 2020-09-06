@@ -4,6 +4,7 @@ import dagger.BindsInstance
 import dagger.Component
 import io.vasilenko.myrecipes.core.FeatureScope
 import io.vasilenko.myrecipes.core.ViewModelFactory
+import io.vasilenko.myrecipes.core.files.FileManager
 import io.vasilenko.myrecipes.data.dao.CategoriesDao
 import io.vasilenko.myrecipes.data.dao.RecipesDao
 import io.vasilenko.myrecipes.di.DI
@@ -30,6 +31,9 @@ interface RecipeCreationComponent {
         @BindsInstance
         fun categoriesDao(categoriesDao: CategoriesDao): Builder
 
+        @BindsInstance
+        fun fileManager(fileManager: FileManager): Builder
+
         fun build(): RecipeCreationComponent
     }
 
@@ -38,6 +42,7 @@ interface RecipeCreationComponent {
             DaggerRecipeCreationComponent.builder()
                 .recipesDao(recipesDao())
                 .categoriesDao(categoriesDao())
+                .fileManager(files())
                 .build()
         }
     }

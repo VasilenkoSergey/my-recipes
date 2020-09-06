@@ -3,6 +3,7 @@ package io.vasilenko.myrecipes.di.component
 import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
+import io.vasilenko.myrecipes.core.files.FileManager
 import io.vasilenko.myrecipes.core.resources.ResourceProvider
 import io.vasilenko.myrecipes.data.dao.CategoriesDao
 import io.vasilenko.myrecipes.data.dao.RecipesDao
@@ -19,6 +20,7 @@ interface AppComponent {
     fun recipesDao(): RecipesDao
     fun categoriesDao(): CategoriesDao
     fun resources(): ResourceProvider
+    fun files(): FileManager
 
     @Component.Builder
     interface Builder {

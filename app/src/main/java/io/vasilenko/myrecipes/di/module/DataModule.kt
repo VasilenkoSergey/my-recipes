@@ -7,6 +7,8 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import io.vasilenko.myrecipes.core.ViewModelFactory
+import io.vasilenko.myrecipes.core.files.AndroidFileManager
+import io.vasilenko.myrecipes.core.files.FileManager
 import io.vasilenko.myrecipes.core.resources.AndroidResourceProvider
 import io.vasilenko.myrecipes.core.resources.ResourceProvider
 import io.vasilenko.myrecipes.data.dao.CategoriesDao
@@ -50,4 +52,8 @@ abstract class DataBindsModule {
     @Binds
     @Singleton
     abstract fun bindResourceProvider(provider: AndroidResourceProvider): ResourceProvider
+
+    @Binds
+    @Singleton
+    abstract fun bindFileManager(provider: AndroidFileManager): FileManager
 }

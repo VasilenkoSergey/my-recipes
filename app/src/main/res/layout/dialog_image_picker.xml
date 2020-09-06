@@ -1,0 +1,65 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/headerTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center"
+        android:text="@string/image_picker_header"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/cameraTextView"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@android:color/white"
+        android:drawableStart="@drawable/ic_camera"
+        android:drawablePadding="32dp"
+        android:gravity="start|center_vertical"
+        android:text="@string/image_picker_camera"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/galleryTextView"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@android:color/white"
+        android:drawableStart="@drawable/ic_gallery"
+        android:drawablePadding="32dp"
+        android:gravity="start|center_vertical"
+        android:text="@string/image_picker_gallery"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="8dp"
+
+        android:layout_marginTop="7dp"
+        android:background="@color/gray" />
+
+    <TextView
+        android:id="@+id/deleteTextView"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@android:color/white"
+        android:drawablePadding="32dp"
+        android:drawableStart="@drawable/ic_delete"
+        android:gravity="start|center_vertical"
+        android:text="@string/image_picker_delete"
+        android:textSize="16sp" />
+
+</LinearLayout>
