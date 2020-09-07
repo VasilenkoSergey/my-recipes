@@ -1,15 +1,20 @@
 package io.vasilenko.myrecipes.presentation.catalog.adapter
 
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
+import io.vasilenko.myrecipes.R
 import io.vasilenko.myrecipes.databinding.ItemCatalogCategoriesBinding
 import io.vasilenko.myrecipes.databinding.ItemCatalogEmptyBinding
 import io.vasilenko.myrecipes.databinding.ItemCatalogRecipesBinding
-import io.vasilenko.myrecipes.presentation.catalog.model.CatalogEmptyGroupModel
 import io.vasilenko.myrecipes.presentation.catalog.model.CatalogCategoriesGroupModel
+import io.vasilenko.myrecipes.presentation.catalog.model.CatalogEmptyGroupModel
 import io.vasilenko.myrecipes.presentation.catalog.model.CatalogRecipesGroupModel
 import io.vasilenko.myrecipes.presentation.common.BaseDiffUtilItemCallback
+import io.vasilenko.myrecipes.presentation.common.ItemDecoration
 import io.vasilenko.myrecipes.presentation.common.ListItem
+
 
 class CatalogAdapter : AsyncListDifferDelegationAdapter<ListItem>(BaseDiffUtilItemCallback()) {
 
@@ -21,7 +26,13 @@ class CatalogAdapter : AsyncListDifferDelegationAdapter<ListItem>(BaseDiffUtilIt
 
     private fun categoriesDelegate() =
         adapterDelegateViewBinding<CatalogCategoriesGroupModel, ListItem, ItemCatalogCategoriesBinding>(
-            { layoutInflater, root -> ItemCatalogCategoriesBinding.inflate(layoutInflater, root, false) }
+            { layoutInflater, root ->
+                ItemCatalogCategoriesBinding.inflate(
+                    layoutInflater,
+                    root,
+                    false
+                )
+            }
         ) {
             val adapter = CategoriesAdapter()
             binding.recyclerView.adapter = adapter
@@ -43,7 +54,11 @@ class CatalogAdapter : AsyncListDifferDelegationAdapter<ListItem>(BaseDiffUtilIt
             }
         ) {
             val adapter = RecipesAdapter()
+            val padding = binding.recyclerView.context.resources.getDimensionPixelSize(R.dimen.decoration_padding)
             binding.recyclerView.adapter = adapter
+            binding.recyclerView.addItemDecoration(
+                ItemDecoration(padding)
+            )
 
             bind {
                 binding.titleTextView.text = item.title
