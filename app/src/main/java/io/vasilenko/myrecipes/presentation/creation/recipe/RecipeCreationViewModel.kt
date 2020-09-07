@@ -28,6 +28,10 @@ class RecipeCreationViewModel @Inject constructor(
 
     private var title: String? = ""
 
+    init {
+        _isCreateButtonEnabled.value = false
+    }
+
     fun afterTitleTextChanged(text: String) {
         title = text
         checkData()
