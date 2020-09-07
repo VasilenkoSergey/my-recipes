@@ -1,7 +1,5 @@
 package io.vasilenko.myrecipes.presentation.catalog.adapter
 
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import io.vasilenko.myrecipes.R
@@ -38,7 +36,6 @@ class CatalogAdapter : AsyncListDifferDelegationAdapter<ListItem>(BaseDiffUtilIt
             binding.recyclerView.adapter = adapter
 
             bind {
-                binding.titleTextView.text = item.title
                 adapter.items = item.recipes
             }
         }

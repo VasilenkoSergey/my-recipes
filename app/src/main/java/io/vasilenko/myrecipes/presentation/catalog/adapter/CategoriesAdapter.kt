@@ -21,7 +21,6 @@ class CategoriesAdapter : AsyncListDifferDelegationAdapter<ListItem>(BaseDiffUti
         ) {
             bind {
                 binding.title = item.title
-                binding.imageView.setBackgroundColor(-10354450)
                 binding.executePendingBindings()
             }
         }
