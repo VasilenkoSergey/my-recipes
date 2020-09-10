@@ -7,8 +7,11 @@ import io.vasilenko.myrecipes.databinding.ItemCatalogRecipeBinding
 import io.vasilenko.myrecipes.presentation.catalog.model.CatalogRecipeModel
 import io.vasilenko.myrecipes.presentation.common.BaseDiffUtilItemCallback
 import io.vasilenko.myrecipes.presentation.common.ListItem
+import io.vasilenko.myrecipes.presentation.model.RecipeModel
 
-class RecipesAdapter : AsyncListDifferDelegationAdapter<ListItem>(BaseDiffUtilItemCallback()) {
+class RecipesAdapter(
+    private val clickListener: (Long) -> Unit
+) : AsyncListDifferDelegationAdapter<ListItem>(BaseDiffUtilItemCallback()) {
 
     init {
         delegatesManager.addDelegate(recipeItemsDelegate())
@@ -25,5 +28,6 @@ class RecipesAdapter : AsyncListDifferDelegationAdapter<ListItem>(BaseDiffUtilIt
                 binding.imageView.load(item.image)
                 binding.executePendingBindings()
             }
+            itemView.setOnClickListener { clickListener(item.id) }
         }
 }

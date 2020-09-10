@@ -14,6 +14,7 @@ import com.getbase.floatingactionbutton.FloatingActionsMenu.OnFloatingActionsMen
 import io.vasilenko.myrecipes.R
 import io.vasilenko.myrecipes.databinding.FragmentCatalogBinding
 import io.vasilenko.myrecipes.di.component.CatalogComponent
+import io.vasilenko.myrecipes.presentation.catalog.CatalogFragmentDirections.Companion.actionNavCatalogToRecipeDetails
 import io.vasilenko.myrecipes.presentation.catalog.adapter.CatalogAdapter
 import io.vasilenko.myrecipes.presentation.common.viewBinding
 
@@ -22,7 +23,7 @@ class CatalogFragment : Fragment(R.layout.fragment_catalog) {
     private val binding by viewBinding { FragmentCatalogBinding.bind(it) }
     private val component by lazy { CatalogComponent.create() }
     private val viewModel by viewModels<CatalogViewModel> { component.viewModelFactory() }
-    private val adapter = CatalogAdapter()
+    private val adapter = CatalogAdapter { recipeId -> recipeDetailsClickListener(recipeId) }
     private lateinit var navController: NavController
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -103,6 +104,11 @@ class CatalogFragment : Fragment(R.layout.fragment_catalog) {
             isDim -> binding.recyclerView.alpha = DIM
             else -> binding.recyclerView.alpha = NOT_DIM
         }
+    }
+
+    private fun recipeDetailsClickListener(recipeId: Long) {
+        val action = actionNavCatalogToRecipeDetails(recipeId)
+        navController.navigate(action)
     }
 
     companion object {

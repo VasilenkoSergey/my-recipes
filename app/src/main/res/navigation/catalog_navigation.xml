@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_navCatalog_to_categoryCreationFragment"
             app:destination="@id/categoryCreationFragment" />
+        <action
+            android:id="@+id/action_navCatalog_to_recipe_details"
+            app:destination="@id/recipe_details" />
     </fragment>
 
     <fragment
@@ -54,6 +57,15 @@
             app:destination="@id/image_picker_dialog" />
     </fragment>
 
+    <fragment
+        android:id="@+id/recipe_details"
+        android:name="io.vasilenko.myrecipes.presentation.recipedetails.RecipeDetailsFragment"
+        tools:layout="@layout/fragment_recipe_details">
+        <argument
+            android:name="id"
+            app:argType="long" />
+    </fragment>
+
     <dialog
         android:id="@+id/creation_cancel_dialog"
         android:name="io.vasilenko.myrecipes.presentation.creation.CreationCancelDialogFragment"
@@ -65,8 +77,8 @@
         tools:layout="@layout/dialog_image_picker">
         <argument
             android:name="path"
-            app:argType="string"
-            android:defaultValue="" />
+            android:defaultValue=""
+            app:argType="string" />
     </dialog>
 
 </navigation>

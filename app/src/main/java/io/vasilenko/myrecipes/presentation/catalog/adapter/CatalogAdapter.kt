@@ -12,9 +12,12 @@ import io.vasilenko.myrecipes.presentation.catalog.model.CatalogRecipesGroupMode
 import io.vasilenko.myrecipes.presentation.common.BaseDiffUtilItemCallback
 import io.vasilenko.myrecipes.presentation.common.ItemDecoration
 import io.vasilenko.myrecipes.presentation.common.ListItem
+import io.vasilenko.myrecipes.presentation.model.RecipeModel
 
 
-class CatalogAdapter : AsyncListDifferDelegationAdapter<ListItem>(BaseDiffUtilItemCallback()) {
+class CatalogAdapter(
+    private val recipeDetailsClickListener: (Long) -> Unit
+) : AsyncListDifferDelegationAdapter<ListItem>(BaseDiffUtilItemCallback()) {
 
     init {
         delegatesManager.addDelegate(categoriesDelegate())
@@ -50,7 +53,7 @@ class CatalogAdapter : AsyncListDifferDelegationAdapter<ListItem>(BaseDiffUtilIt
                 )
             }
         ) {
-            val adapter = RecipesAdapter()
+            val adapter = RecipesAdapter(recipeDetailsClickListener)
             val padding = binding.recyclerView.context.resources.getDimensionPixelSize(R.dimen.decoration_padding)
             binding.recyclerView.adapter = adapter
             binding.recyclerView.addItemDecoration(
