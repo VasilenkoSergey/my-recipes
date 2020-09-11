@@ -1,11 +1,13 @@
 package io.vasilenko.myrecipes.data.mapper
 
+import io.vasilenko.myrecipes.core.Mapper
 import io.vasilenko.myrecipes.data.entity.Recipe
 import io.vasilenko.myrecipes.domain.entity.RecipeEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class RecipesDataMapper {
+class RecipesDataMapper @Inject constructor() : Mapper {
 
     fun mapRecipesToEntities(recipes: Flow<List<Recipe>>): Flow<List<RecipeEntity>> {
         return recipes.map { list ->

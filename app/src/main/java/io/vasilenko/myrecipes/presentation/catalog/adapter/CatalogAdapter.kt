@@ -12,7 +12,6 @@ import io.vasilenko.myrecipes.presentation.catalog.model.CatalogRecipesGroupMode
 import io.vasilenko.myrecipes.presentation.common.BaseDiffUtilItemCallback
 import io.vasilenko.myrecipes.presentation.common.ItemDecoration
 import io.vasilenko.myrecipes.presentation.common.ListItem
-import io.vasilenko.myrecipes.presentation.model.RecipeModel
 
 
 class CatalogAdapter(
@@ -54,7 +53,8 @@ class CatalogAdapter(
             }
         ) {
             val adapter = RecipesAdapter(recipeDetailsClickListener)
-            val padding = binding.recyclerView.context.resources.getDimensionPixelSize(R.dimen.decoration_padding)
+            val padding =
+                binding.recyclerView.context.resources.getDimensionPixelSize(R.dimen.decoration_padding)
             binding.recyclerView.adapter = adapter
             binding.recyclerView.addItemDecoration(
                 ItemDecoration(padding)

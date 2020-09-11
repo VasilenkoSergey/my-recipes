@@ -4,10 +4,10 @@ import androidx.lifecycle.*
 import io.vasilenko.myrecipes.domain.usecase.CreateRecipeUseCase
 import io.vasilenko.myrecipes.domain.usecase.DeleteImageUseCase
 import io.vasilenko.myrecipes.domain.usecase.LoadAllCategoriesUseCase
-import io.vasilenko.myrecipes.presentation.mapper.CategoriesModelMapper
-import io.vasilenko.myrecipes.presentation.mapper.RecipesModelMapper
-import io.vasilenko.myrecipes.presentation.model.CategoryModel
-import io.vasilenko.myrecipes.presentation.model.RecipeModel
+import io.vasilenko.myrecipes.presentation.creation.category.mapper.CategoryCreationMapper
+import io.vasilenko.myrecipes.presentation.creation.category.model.CategoryCreationModel
+import io.vasilenko.myrecipes.presentation.creation.recipe.mapper.RecipeCreationMapper
+import io.vasilenko.myrecipes.presentation.creation.recipe.model.RecipeCreationModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -15,8 +15,8 @@ import javax.inject.Inject
 
 class RecipeCreationViewModel @Inject constructor(
     private val createUseCase: CreateRecipeUseCase,
-    private val mapper: RecipesModelMapper,
-    private val categoriesMapper: CategoriesModelMapper,
+    private val mapper: RecipeCreationMapper,
+    private val categoriesMapper: CategoryCreationMapper,
     private val loadAllCategoriesUseCase: LoadAllCategoriesUseCase,
     private val deleteImageUseCase: DeleteImageUseCase
 ) : ViewModel() {
@@ -24,7 +24,7 @@ class RecipeCreationViewModel @Inject constructor(
     private val _isCreateButtonEnabled = MutableLiveData<Boolean>()
     val isCreateButtonEnabled: LiveData<Boolean> = _isCreateButtonEnabled
 
-    val categories: LiveData<List<CategoryModel>> = getCategoriesData().asLiveData()
+    val categories: LiveData<List<CategoryCreationModel>> = getCategoriesData().asLiveData()
 
     private var title: String? = ""
 
@@ -37,7 +37,7 @@ class RecipeCreationViewModel @Inject constructor(
         checkData()
     }
 
-    fun createRecipe(recipe: RecipeModel) {
+    fun createRecipe(recipe: RecipeCreationModel) {
         viewModelScope.launch {
             createUseCase.createRecipe(mapper.mapRecipeModelToEntity(recipe))
         }
@@ -49,10 +49,11 @@ class RecipeCreationViewModel @Inject constructor(
         }
     }
 
-    private fun getCategoriesData(): Flow<List<CategoryModel>> = loadAllCategoriesUseCase.execute()
-        .map {
-            categoriesMapper.mapEntitiesToModels(it)
-        }
+    private fun getCategoriesData(): Flow<List<CategoryCreationModel>> =
+        loadAllCategoriesUseCase.execute()
+            .map {
+                categoriesMapper.mapEntitiesToModels(it)
+            }
 
     private fun checkData() {
         _isCreateButtonEnabled.value = isTitleValid()

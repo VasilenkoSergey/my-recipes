@@ -1,6 +1,6 @@
-package io.vasilenko.myrecipes.presentation.model
+package io.vasilenko.myrecipes.presentation.creation.recipe.model
 
-data class RecipeModel(
+data class RecipeCreationModel(
     val id: Long = 0,
     val title: String,
     val image: String = "",

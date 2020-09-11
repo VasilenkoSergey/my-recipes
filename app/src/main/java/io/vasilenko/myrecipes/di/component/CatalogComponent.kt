@@ -8,16 +8,16 @@ import io.vasilenko.myrecipes.core.resources.ResourceProvider
 import io.vasilenko.myrecipes.data.dao.CategoriesDao
 import io.vasilenko.myrecipes.data.dao.RecipesDao
 import io.vasilenko.myrecipes.di.DI
-import io.vasilenko.myrecipes.di.module.*
+import io.vasilenko.myrecipes.di.module.CatalogModule
+import io.vasilenko.myrecipes.di.module.CategoriesDataModule
+import io.vasilenko.myrecipes.di.module.RecipesDataModule
 
 @FeatureScope
 @Component(
     modules = [
         CatalogModule::class,
-        CategoriesModule::class,
-        CategoriesBindsModule::class,
-        RecipesModule::class,
-        RecipesBindsModule::class
+        CategoriesDataModule::class,
+        RecipesDataModule::class
     ]
 )
 interface CatalogComponent {

@@ -13,7 +13,7 @@ import io.vasilenko.myrecipes.R
 import io.vasilenko.myrecipes.databinding.FragmentCreationCategoryBinding
 import io.vasilenko.myrecipes.di.component.CategoryCreationComponent
 import io.vasilenko.myrecipes.presentation.common.viewBinding
-import io.vasilenko.myrecipes.presentation.model.CategoryModel
+import io.vasilenko.myrecipes.presentation.creation.category.model.CategoryCreationModel
 
 class CategoryCreationFragment : Fragment(R.layout.fragment_creation_category) {
 
@@ -44,7 +44,7 @@ class CategoryCreationFragment : Fragment(R.layout.fragment_creation_category) {
 
         val createBtn = binding.createBtn
         createBtn.setOnClickListener {
-            viewModel.saveCategory(CategoryModel(title = title, image = ""))
+            viewModel.saveCategory(CategoryCreationModel(title = title, image = ""))
             close()
         }
         binding.nameEditText.doAfterTextChanged {

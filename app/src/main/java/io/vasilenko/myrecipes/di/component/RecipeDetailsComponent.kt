@@ -4,10 +4,10 @@ import dagger.Component
 import io.vasilenko.myrecipes.core.FeatureScope
 import io.vasilenko.myrecipes.core.ViewModelFactory
 import io.vasilenko.myrecipes.di.DI
-import io.vasilenko.myrecipes.di.module.RecipeDetailsBindsModule
+import io.vasilenko.myrecipes.di.module.RecipeDetailsModule
 
 @FeatureScope
-@Component(modules = [RecipeDetailsBindsModule::class])
+@Component(modules = [RecipeDetailsModule::class])
 interface RecipeDetailsComponent {
 
     fun viewModelFactory(): ViewModelFactory

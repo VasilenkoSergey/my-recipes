@@ -8,7 +8,7 @@ import io.vasilenko.myrecipes.core.ViewModelKey
 import io.vasilenko.myrecipes.presentation.recipedetails.RecipeDetailsViewModel
 
 @Module
-abstract class RecipeDetailsBindsModule {
+abstract class RecipeDetailsModule {
 
     @Binds
     @IntoMap

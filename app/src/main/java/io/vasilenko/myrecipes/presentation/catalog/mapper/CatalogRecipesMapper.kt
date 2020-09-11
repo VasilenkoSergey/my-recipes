@@ -1,22 +1,14 @@
-package io.vasilenko.myrecipes.presentation.mapper
+package io.vasilenko.myrecipes.presentation.catalog.mapper
 
+import io.vasilenko.myrecipes.core.Mapper
 import io.vasilenko.myrecipes.domain.entity.RecipeEntity
 import io.vasilenko.myrecipes.presentation.catalog.model.CatalogRecipeModel
 import io.vasilenko.myrecipes.presentation.catalog.model.CatalogRecipesGroupModel
-import io.vasilenko.myrecipes.presentation.model.RecipeModel
+import javax.inject.Inject
 
-class RecipesModelMapper {
+class CatalogRecipesMapper @Inject constructor() : Mapper {
 
-    fun mapRecipeModelToEntity(recipe: RecipeModel): RecipeEntity {
-        return RecipeEntity(
-            id = recipe.id,
-            name = recipe.title,
-            categoryId = recipe.categoryId,
-            image = recipe.image
-        )
-    }
-
-    fun mapEntitiesToCatalogGroup(
+    fun mapEntitiesToModel(
         recipes: List<RecipeEntity>,
         name: String
     ): CatalogRecipesGroupModel {
