@@ -1,7 +1,6 @@
 package io.vasilenko.myrecipes.presentation
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -66,7 +65,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupBottomNavigationBarVisibility(navController: NavController) {
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            Log.d("MainActivity", destination.id.toString())
             when (destination.id) {
                 R.id.navCatalog -> showBottomNav()
                 R.id.navFavorite -> showBottomNav()
