@@ -31,7 +31,7 @@ class CategoryCreationViewModel @Inject constructor(
 
     fun saveCategory(category: CategoryCreationModel) {
         viewModelScope.launch {
-            createUseCase.createCategory(mapper.mapCategoryModelToEntity(category))
+            createUseCase.execute(mapper.mapCategoryModelToEntity(category))
         }
     }
 

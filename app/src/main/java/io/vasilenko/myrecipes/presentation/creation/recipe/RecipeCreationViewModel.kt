@@ -39,13 +39,13 @@ class RecipeCreationViewModel @Inject constructor(
 
     fun createRecipe(recipe: RecipeCreationModel) {
         viewModelScope.launch {
-            createUseCase.createRecipe(mapper.mapRecipeModelToEntity(recipe))
+            createUseCase.execute(mapper.mapRecipeModelToEntity(recipe))
         }
     }
 
     fun onCancel(path: String) {
         if (path.isNotEmpty()) {
-            deleteImageUseCase.perform(path)
+            deleteImageUseCase.execute(path)
         }
     }
 

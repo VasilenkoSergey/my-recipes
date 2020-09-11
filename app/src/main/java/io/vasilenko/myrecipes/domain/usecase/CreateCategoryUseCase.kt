@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class CreateCategoryUseCase @Inject constructor(private val repository: CategoriesRepo) : UseCase {
 
-    suspend fun createCategory(categoryEntity: CategoryEntity) {
+    suspend fun execute(categoryEntity: CategoryEntity) {
         repository.save(categoryEntity)
     }
 }

@@ -7,10 +7,12 @@ import io.vasilenko.myrecipes.core.presentation.viewmodel.SingleLiveEvent
 import io.vasilenko.myrecipes.domain.usecase.CreateImageUseCase
 import io.vasilenko.myrecipes.domain.usecase.DeleteImageUseCase
 import io.vasilenko.myrecipes.domain.usecase.GetImageDataUseCase
+import io.vasilenko.myrecipes.domain.usecase.SaveImageUseCase
 import javax.inject.Inject
 
 class ImagePickerViewModel @Inject constructor(
     private val createImageUseCase: CreateImageUseCase,
+    private val saveImageUseCase: SaveImageUseCase,
     private val getImageDataUseCase: GetImageDataUseCase,
     private val deleteImageUseCase: DeleteImageUseCase
 ) : ViewModel() {
@@ -28,7 +30,7 @@ class ImagePickerViewModel @Inject constructor(
 
     fun onImagePick(path: String) {
         if (path.isEmpty()) {
-            createImageUseCase.createImageFile().apply {
+            createImageUseCase.execute().apply {
                 imagePath = absolutePath
                 _pickImage.postValue(true)
             }
@@ -39,19 +41,19 @@ class ImagePickerViewModel @Inject constructor(
     }
 
     fun onImagePicked(data: Uri?) {
-        createImageUseCase.saveImage(imagePath, data)
+        saveImageUseCase.execute(imagePath, data)
         _close.postValue(imagePath)
     }
 
     fun onImageCapture(path: String) {
         if (path.isEmpty()) {
-            createImageUseCase.createImageFile().apply {
-                val uri = getImageDataUseCase.perform(absolutePath)
+            createImageUseCase.execute().apply {
+                val uri = getImageDataUseCase.execute(absolutePath)
                 _captureImage.postValue(uri)
                 imagePath = absolutePath
             }
         } else {
-            _captureImage.postValue(getImageDataUseCase.perform(path))
+            _captureImage.postValue(getImageDataUseCase.execute(path))
             imagePath = path
         }
     }
@@ -62,7 +64,7 @@ class ImagePickerViewModel @Inject constructor(
 
     fun onDeleteImage(path: String) {
         if (path.isNotEmpty()) {
-            deleteImageUseCase.perform(path)
+            deleteImageUseCase.execute(path)
             _close.postValue("")
         }
     }
