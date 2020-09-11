@@ -1,6 +1,6 @@
 package io.vasilenko.myrecipes.presentation.catalog.mapper
 
-import io.vasilenko.myrecipes.core.Mapper
+import io.vasilenko.myrecipes.core.mapper.Mapper
 import io.vasilenko.myrecipes.domain.entity.CategoryEntity
 import io.vasilenko.myrecipes.presentation.catalog.model.CatalogCategoriesGroupModel
 import io.vasilenko.myrecipes.presentation.catalog.model.CatalogCategoryModel

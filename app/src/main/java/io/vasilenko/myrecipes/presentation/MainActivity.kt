@@ -12,7 +12,7 @@ import androidx.navigation.Navigation.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.vasilenko.myrecipes.R
 import io.vasilenko.myrecipes.databinding.ActivityMainBinding
-import io.vasilenko.myrecipes.presentation.common.setupWithNavController
+import io.vasilenko.myrecipes.core.presentation.navigation.setupWithNavController
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

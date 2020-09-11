@@ -1,6 +1,6 @@
 package io.vasilenko.myrecipes.presentation.creation.recipe.mapper
 
-import io.vasilenko.myrecipes.core.Mapper
+import io.vasilenko.myrecipes.core.mapper.Mapper
 import io.vasilenko.myrecipes.domain.entity.RecipeEntity
 import io.vasilenko.myrecipes.presentation.creation.recipe.model.RecipeCreationModel
 import javax.inject.Inject

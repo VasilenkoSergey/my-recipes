@@ -1,6 +1,6 @@
 package io.vasilenko.myrecipes.data.mapper
 
-import io.vasilenko.myrecipes.core.Mapper
+import io.vasilenko.myrecipes.core.mapper.Mapper
 import io.vasilenko.myrecipes.data.entity.Category
 import io.vasilenko.myrecipes.domain.entity.CategoryEntity
 import kotlinx.coroutines.flow.Flow

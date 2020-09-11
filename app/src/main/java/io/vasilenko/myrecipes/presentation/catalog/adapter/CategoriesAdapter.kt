@@ -4,8 +4,8 @@ import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import io.vasilenko.myrecipes.databinding.ItemCatalogCategoryBinding
 import io.vasilenko.myrecipes.presentation.catalog.model.CatalogCategoryModel
-import io.vasilenko.myrecipes.presentation.common.BaseDiffUtilItemCallback
-import io.vasilenko.myrecipes.presentation.common.ListItem
+import io.vasilenko.myrecipes.core.presentation.adapter.BaseDiffUtilItemCallback
+import io.vasilenko.myrecipes.core.presentation.adapter.ListItem
 
 class CategoriesAdapter : AsyncListDifferDelegationAdapter<ListItem>(BaseDiffUtilItemCallback()) {
 

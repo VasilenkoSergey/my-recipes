@@ -12,7 +12,7 @@ import io.vasilenko.myrecipes.domain.usecase.LoadAllRecipesUseCase
 import io.vasilenko.myrecipes.presentation.catalog.mapper.CatalogCategoriesMapper
 import io.vasilenko.myrecipes.presentation.catalog.mapper.CatalogRecipesMapper
 import io.vasilenko.myrecipes.presentation.catalog.model.CatalogEmptyGroupModel
-import io.vasilenko.myrecipes.presentation.common.ListItem
+import io.vasilenko.myrecipes.core.presentation.adapter.ListItem
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import javax.inject.Inject

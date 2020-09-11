@@ -1,4 +1,4 @@
-package io.vasilenko.myrecipes.presentation.common
+package io.vasilenko.myrecipes.core.presentation.fragment
 
 import android.view.View
 import androidx.fragment.app.Fragment

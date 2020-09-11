@@ -1,8 +1,8 @@
 package io.vasilenko.myrecipes.di.component
 
 import dagger.Component
-import io.vasilenko.myrecipes.core.FeatureScope
-import io.vasilenko.myrecipes.core.ViewModelFactory
+import io.vasilenko.myrecipes.core.di.FeatureScope
+import io.vasilenko.myrecipes.core.presentation.viewmodel.ViewModelFactory
 import io.vasilenko.myrecipes.di.DI
 import io.vasilenko.myrecipes.di.module.RecipeDetailsModule
 

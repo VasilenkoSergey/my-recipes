@@ -3,7 +3,7 @@ package io.vasilenko.myrecipes.presentation.imagepicker
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import io.vasilenko.myrecipes.core.SingleLiveEvent
+import io.vasilenko.myrecipes.core.presentation.viewmodel.SingleLiveEvent
 import io.vasilenko.myrecipes.domain.usecase.CreateImageUseCase
 import io.vasilenko.myrecipes.domain.usecase.DeleteImageUseCase
 import io.vasilenko.myrecipes.domain.usecase.GetImageDataUseCase

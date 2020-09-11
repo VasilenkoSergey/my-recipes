@@ -8,7 +8,7 @@ import androidx.navigation.fragment.navArgs
 import io.vasilenko.myrecipes.R
 import io.vasilenko.myrecipes.databinding.FragmentRecipeDetailsBinding
 import io.vasilenko.myrecipes.di.component.RecipeDetailsComponent
-import io.vasilenko.myrecipes.presentation.common.viewBinding
+import io.vasilenko.myrecipes.core.presentation.fragment.viewBinding
 
 class RecipeDetailsFragment : Fragment(R.layout.fragment_recipe_details) {
 

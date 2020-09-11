@@ -6,7 +6,7 @@ import androidx.room.Room
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import io.vasilenko.myrecipes.core.ViewModelFactory
+import io.vasilenko.myrecipes.core.presentation.viewmodel.ViewModelFactory
 import io.vasilenko.myrecipes.core.files.AndroidFileManager
 import io.vasilenko.myrecipes.core.files.FileManager
 import io.vasilenko.myrecipes.core.resources.AndroidResourceProvider

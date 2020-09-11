@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import io.vasilenko.myrecipes.R
 import io.vasilenko.myrecipes.databinding.FragmentCreationBinding
-import io.vasilenko.myrecipes.presentation.common.viewBinding
+import io.vasilenko.myrecipes.core.presentation.fragment.viewBinding
 
 class CreationFragment : Fragment(R.layout.fragment_creation) {
 

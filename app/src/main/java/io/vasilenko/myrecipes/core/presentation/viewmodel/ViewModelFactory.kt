@@ -1,4 +1,4 @@
-package io.vasilenko.myrecipes.core
+package io.vasilenko.myrecipes.core.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

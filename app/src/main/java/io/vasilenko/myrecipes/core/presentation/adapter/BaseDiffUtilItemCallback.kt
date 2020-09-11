@@ -1,4 +1,4 @@
-package io.vasilenko.myrecipes.presentation.common
+package io.vasilenko.myrecipes.core.presentation.adapter
 
 import androidx.recyclerview.widget.DiffUtil
 

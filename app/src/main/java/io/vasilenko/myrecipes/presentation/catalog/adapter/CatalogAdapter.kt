@@ -9,9 +9,9 @@ import io.vasilenko.myrecipes.databinding.ItemCatalogRecipesBinding
 import io.vasilenko.myrecipes.presentation.catalog.model.CatalogCategoriesGroupModel
 import io.vasilenko.myrecipes.presentation.catalog.model.CatalogEmptyGroupModel
 import io.vasilenko.myrecipes.presentation.catalog.model.CatalogRecipesGroupModel
-import io.vasilenko.myrecipes.presentation.common.BaseDiffUtilItemCallback
-import io.vasilenko.myrecipes.presentation.common.ItemDecoration
-import io.vasilenko.myrecipes.presentation.common.ListItem
+import io.vasilenko.myrecipes.core.presentation.adapter.BaseDiffUtilItemCallback
+import io.vasilenko.myrecipes.core.presentation.ui.ItemDecoration
+import io.vasilenko.myrecipes.core.presentation.adapter.ListItem
 
 
 class CatalogAdapter(

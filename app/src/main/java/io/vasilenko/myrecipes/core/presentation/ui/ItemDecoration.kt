@@ -1,4 +1,4 @@
-package io.vasilenko.myrecipes.presentation.common
+package io.vasilenko.myrecipes.core.presentation.ui
 
 import android.graphics.Rect
 import android.view.View

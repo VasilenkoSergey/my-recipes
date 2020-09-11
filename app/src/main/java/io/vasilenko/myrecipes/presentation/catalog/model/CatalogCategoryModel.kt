@@ -1,6 +1,6 @@
 package io.vasilenko.myrecipes.presentation.catalog.model
 
-import io.vasilenko.myrecipes.presentation.common.ListItem
+import io.vasilenko.myrecipes.core.presentation.adapter.ListItem
 
 data class CatalogCategoryModel(
     val id: Long,

@@ -16,7 +16,7 @@ import io.vasilenko.myrecipes.databinding.FragmentCatalogBinding
 import io.vasilenko.myrecipes.di.component.CatalogComponent
 import io.vasilenko.myrecipes.presentation.catalog.CatalogFragmentDirections.Companion.actionNavCatalogToRecipeDetails
 import io.vasilenko.myrecipes.presentation.catalog.adapter.CatalogAdapter
-import io.vasilenko.myrecipes.presentation.common.viewBinding
+import io.vasilenko.myrecipes.core.presentation.fragment.viewBinding
 
 class CatalogFragment : Fragment(R.layout.fragment_catalog) {
 

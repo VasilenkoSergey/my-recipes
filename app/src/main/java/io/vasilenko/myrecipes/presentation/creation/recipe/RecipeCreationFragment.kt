@@ -15,7 +15,7 @@ import io.vasilenko.myrecipes.R
 import io.vasilenko.myrecipes.core.ext.loadSearched
 import io.vasilenko.myrecipes.databinding.FragmentCreationRecipeBinding
 import io.vasilenko.myrecipes.di.component.RecipeCreationComponent
-import io.vasilenko.myrecipes.presentation.common.viewBinding
+import io.vasilenko.myrecipes.core.presentation.fragment.viewBinding
 import io.vasilenko.myrecipes.presentation.creation.category.model.CategoryCreationModel
 import io.vasilenko.myrecipes.presentation.creation.recipe.model.RecipeCreationModel
 import io.vasilenko.myrecipes.presentation.creation.recipe.RecipeCreationFragmentDirections.Companion.actionRecipeCreationFragmentToImagePickerDialog as imagePickerAction

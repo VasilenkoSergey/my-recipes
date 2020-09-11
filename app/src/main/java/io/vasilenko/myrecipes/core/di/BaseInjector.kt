@@ -1,4 +1,4 @@
-package io.vasilenko.myrecipes.core
+package io.vasilenko.myrecipes.core.di
 
 interface BaseInjector<T : Any> {
 

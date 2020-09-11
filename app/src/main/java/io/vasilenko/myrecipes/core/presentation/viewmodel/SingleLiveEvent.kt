@@ -1,4 +1,4 @@
-package io.vasilenko.myrecipes.core
+package io.vasilenko.myrecipes.core.presentation.viewmodel
 
 import androidx.annotation.MainThread
 import androidx.lifecycle.LifecycleOwner
