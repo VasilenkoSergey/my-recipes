@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         val navGraphIds = listOf(
             R.navigation.catalog_navigation,
             R.navigation.favorite_navigation,
-            R.navigation.cooking_navigation,
+            R.navigation.creation_navigation,
             R.navigation.basket_navigation,
             R.navigation.more_navigation
         )
@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.navCatalog -> showBottomNav()
                 R.id.navFavorite -> showBottomNav()
-                R.id.navCooking -> showBottomNav()
+                R.id.navCreation -> showBottomNav()
                 R.id.navBasket -> showBottomNav()
                 R.id.navMore -> showBottomNav()
                 else -> hideBottomNav()
