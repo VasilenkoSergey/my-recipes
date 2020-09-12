@@ -11,8 +11,9 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.vasilenko.myrecipes.R
-import io.vasilenko.myrecipes.databinding.ActivityMainBinding
+import io.vasilenko.myrecipes.core.ext.disableTooltipText
 import io.vasilenko.myrecipes.core.presentation.navigation.setupWithNavController
+import io.vasilenko.myrecipes.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -21,12 +22,14 @@ class MainActivity : AppCompatActivity() {
 
     private var currentNavController: LiveData<NavController>? = null
     private var doubleBackToExitPressedOnce = false
+    private lateinit var bottomNavigationView: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        bottomNavigationView = binding.bottomNavigation
         if (savedInstanceState == null) {
             setupBottomNavigationBar()
         }
@@ -38,7 +41,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupBottomNavigationBar() {
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigation)
         val navGraphIds = listOf(
             R.navigation.catalog_navigation,
             R.navigation.favorite_navigation,
@@ -57,6 +59,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         currentNavController = controller
+        bottomNavigationView.disableTooltipText()
     }
 
     override fun onSupportNavigateUp(): Boolean {
