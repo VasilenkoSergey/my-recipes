@@ -11,6 +11,9 @@ interface RecipesDao {
     @Query("SELECT * FROM recipes")
     fun findAll(): Flow<List<Recipe>>
 
+    @Query("SELECT * FROM recipes WHERE id=:id")
+    fun findById(id: Long): Flow<Recipe>
+
     @Transaction
     @Query("SELECT * FROM recipes")
     fun findAllWithCategory(): Flow<List<RecipeWithCategory>>

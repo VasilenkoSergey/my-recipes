@@ -22,6 +22,17 @@ class RecipesDataMapper @Inject constructor() : Mapper {
         }
     }
 
+    fun mapRecipeToEntity(recipe: Flow<Recipe>): Flow<RecipeEntity> {
+        return recipe.map {
+            RecipeEntity(
+                id = it.id,
+                name = it.title,
+                categoryId = it.categoryId,
+                image = it.image
+            )
+        }
+    }
+
     fun mapEntityToRecipe(recipe: RecipeEntity): Recipe {
         return Recipe(title = recipe.name, categoryId = recipe.categoryId, image = recipe.image)
     }
