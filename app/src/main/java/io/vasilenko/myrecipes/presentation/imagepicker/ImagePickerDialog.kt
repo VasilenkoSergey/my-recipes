@@ -12,11 +12,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import io.vasilenko.myrecipes.core.presentation.fragment.AppBottomSheetDialogFragment
 import io.vasilenko.myrecipes.databinding.DialogImagePickerBinding
 import io.vasilenko.myrecipes.di.component.ImagePickerComponent
 
-class ImagePickerDialog : BottomSheetDialogFragment() {
+class ImagePickerDialog : AppBottomSheetDialogFragment() {
 
     private var _binding: DialogImagePickerBinding? = null
     private val binding get() = _binding!!
