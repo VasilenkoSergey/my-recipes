@@ -29,6 +29,7 @@ class CatalogFragment : Fragment(R.layout.fragment_catalog) {
     }
 
     private fun setupView() {
+        binding.toolbar.inflateMenu(R.menu.menu_catalog)
         viewModel.catalog.observe(viewLifecycleOwner, Observer {
             adapter.items = it
         })
