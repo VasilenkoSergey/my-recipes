@@ -9,19 +9,19 @@ import io.vasilenko.myrecipes.domain.entity.CategoryEntity
 import io.vasilenko.myrecipes.domain.entity.RecipeEntity
 import io.vasilenko.myrecipes.domain.usecase.LoadAllCategoriesUseCase
 import io.vasilenko.myrecipes.domain.usecase.LoadAllRecipesUseCase
+import io.vasilenko.myrecipes.presentation.catalog.mapper.CatalogCategoriesMapper
+import io.vasilenko.myrecipes.presentation.catalog.mapper.CatalogRecipesMapper
 import io.vasilenko.myrecipes.presentation.catalog.model.CatalogEmptyGroupModel
-import io.vasilenko.myrecipes.presentation.common.ListItem
-import io.vasilenko.myrecipes.presentation.mapper.CategoriesModelMapper
-import io.vasilenko.myrecipes.presentation.mapper.RecipesModelMapper
+import io.vasilenko.myrecipes.core.presentation.adapter.ListItem
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import javax.inject.Inject
 
 class CatalogViewModel @Inject constructor(
     private val loadAllCategoriesUseCase: LoadAllCategoriesUseCase,
-    private val categoriesMapper: CategoriesModelMapper,
+    private val categoriesMapper: CatalogCategoriesMapper,
     private val loadAllRecipesUseCase: LoadAllRecipesUseCase,
-    private val recipesMapper: RecipesModelMapper,
+    private val recipesMapper: CatalogRecipesMapper,
     private val resources: ResourceProvider
 ) : ViewModel() {
 
@@ -56,7 +56,7 @@ class CatalogViewModel @Inject constructor(
         categories: List<CategoryEntity>,
         catalogItems: MutableList<ListItem>
     ) {
-        val categoryItems = categoriesMapper.mapEntitiesToCatalogGroup(
+        val categoryItems = categoriesMapper.mapEntitiesToModel(
             categories,
             resources.string(R.string.categories)
         )
@@ -70,7 +70,7 @@ class CatalogViewModel @Inject constructor(
         catalogItems: MutableList<ListItem>
     ) {
         val recipeItems =
-            recipesMapper.mapEntitiesToCatalogGroup(recipes, resources.string(R.string.recipes))
+            recipesMapper.mapEntitiesToModel(recipes, resources.string(R.string.recipes))
         if (recipeItems.recipes.isNotEmpty()) {
             catalogItems.add(recipeItems)
         }

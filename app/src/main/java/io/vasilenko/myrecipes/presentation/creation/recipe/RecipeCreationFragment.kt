@@ -15,9 +15,9 @@ import io.vasilenko.myrecipes.R
 import io.vasilenko.myrecipes.core.ext.loadSearched
 import io.vasilenko.myrecipes.databinding.FragmentCreationRecipeBinding
 import io.vasilenko.myrecipes.di.component.RecipeCreationComponent
-import io.vasilenko.myrecipes.presentation.common.viewBinding
-import io.vasilenko.myrecipes.presentation.model.CategoryModel
-import io.vasilenko.myrecipes.presentation.model.RecipeModel
+import io.vasilenko.myrecipes.core.presentation.fragment.viewBinding
+import io.vasilenko.myrecipes.presentation.creation.category.model.CategoryCreationModel
+import io.vasilenko.myrecipes.presentation.creation.recipe.model.RecipeCreationModel
 import io.vasilenko.myrecipes.presentation.creation.recipe.RecipeCreationFragmentDirections.Companion.actionRecipeCreationFragmentToImagePickerDialog as imagePickerAction
 
 class RecipeCreationFragment : Fragment(R.layout.fragment_creation_recipe) {
@@ -55,7 +55,7 @@ class RecipeCreationFragment : Fragment(R.layout.fragment_creation_recipe) {
             binding.categoryEditText.setAdapter(adapter)
             binding.categoryEditText.onItemClickListener =
                 AdapterView.OnItemClickListener { parent, _, position, _ ->
-                    val category = parent.getItemAtPosition(position) as CategoryModel
+                    val category = parent.getItemAtPosition(position) as CategoryCreationModel
                     categoryId = category.id
                 }
         })
@@ -63,7 +63,7 @@ class RecipeCreationFragment : Fragment(R.layout.fragment_creation_recipe) {
         val createBtn = binding.createBtn
         createBtn.setOnClickListener {
             viewModel.createRecipe(
-                RecipeModel(
+                RecipeCreationModel(
                     title = title,
                     image = imagePath,
                     categoryId = categoryId

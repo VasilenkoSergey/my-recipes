@@ -2,16 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/catalog_navigation"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_catalog"
         android:title="@string/catalog_bottom_menu_title" />
     <item
         android:id="@+id/favorite_navigation"
         android:icon="@drawable/ic_favorite"
         android:title="@string/favorite_bottom_menu_title" />
     <item
-        android:id="@+id/cooking_navigation"
-        android:icon="@drawable/ic_food"
-        android:title="@string/cooking_bottom_menu_title" />
+        android:id="@+id/creation_navigation"
+        android:icon="@drawable/ic_add_circle"
+        android:title="@string/creation_bottom_menu_title" />
     <item
         android:id="@+id/basket_navigation"
         android:icon="@drawable/ic_basket"

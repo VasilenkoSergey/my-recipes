@@ -5,7 +5,7 @@ import javax.inject.Inject
 
 class DeleteImageUseCase @Inject constructor(private val fileManager: FileManager) : UseCase {
 
-    fun perform(path: String) {
+    fun execute(path: String) {
         fileManager.deleteImageFile(path)
     }
 }

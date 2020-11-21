@@ -13,6 +13,6 @@
         tools:text="Bla"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/cooking_bottom_menu_title" />
+        android:text="@string/cooking_title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

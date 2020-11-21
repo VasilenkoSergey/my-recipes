@@ -2,20 +2,22 @@ package io.vasilenko.myrecipes.di.component
 
 import dagger.BindsInstance
 import dagger.Component
-import io.vasilenko.myrecipes.core.FeatureScope
-import io.vasilenko.myrecipes.core.ViewModelFactory
+import io.vasilenko.myrecipes.core.di.FeatureScope
+import io.vasilenko.myrecipes.core.presentation.viewmodel.ViewModelFactory
 import io.vasilenko.myrecipes.core.files.FileManager
 import io.vasilenko.myrecipes.data.dao.CategoriesDao
 import io.vasilenko.myrecipes.data.dao.RecipesDao
 import io.vasilenko.myrecipes.di.DI
-import io.vasilenko.myrecipes.di.module.RecipeBindsModule
-import io.vasilenko.myrecipes.di.module.RecipeModule
+import io.vasilenko.myrecipes.di.module.CategoriesDataModule
+import io.vasilenko.myrecipes.di.module.RecipeCreationModule
+import io.vasilenko.myrecipes.di.module.RecipesDataModule
 
 @FeatureScope
 @Component(
     modules = [
-        RecipeModule::class,
-        RecipeBindsModule::class
+        CategoriesDataModule::class,
+        RecipesDataModule::class,
+        RecipeCreationModule::class
     ]
 )
 interface RecipeCreationComponent {

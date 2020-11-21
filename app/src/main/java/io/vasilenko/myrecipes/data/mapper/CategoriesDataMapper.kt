@@ -1,11 +1,13 @@
 package io.vasilenko.myrecipes.data.mapper
 
+import io.vasilenko.myrecipes.core.mapper.Mapper
 import io.vasilenko.myrecipes.data.entity.Category
 import io.vasilenko.myrecipes.domain.entity.CategoryEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class CategoriesDataMapper {
+class CategoriesDataMapper @Inject constructor() : Mapper {
 
     fun mapCategoriesToEntities(categories: Flow<List<Category>>): Flow<List<CategoryEntity>> {
         return categories.map { list ->

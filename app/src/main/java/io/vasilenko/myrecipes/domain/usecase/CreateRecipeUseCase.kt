@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class CreateRecipeUseCase @Inject constructor(private val repository: RecipesRepo) : UseCase {
 
-    suspend fun createRecipe(recipe: RecipeEntity) {
+    suspend fun execute(recipe: RecipeEntity) {
         repository.save(recipe)
     }
 }

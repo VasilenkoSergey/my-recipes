@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:animateLayoutChanges="true">
+    android:animateLayoutChanges="true"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/gray"
+        tools:menu="@menu/menu_catalog"
+        app:title="@string/app_name" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -12,46 +21,8 @@
         android:layout_height="match_parent"
         android:clipToPadding="false"
         android:orientation="vertical"
-        android:paddingTop="24dp"
-        android:paddingBottom="24dp"
+        android:paddingBottom="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_catalog_categories" />
+        tools:listitem="@layout/item_catalog_recipes" />
 
-    <FrameLayout
-        android:id="@+id/dummyFrame"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:descendantFocusability="blocksDescendants" />
-
-    <com.getbase.floatingactionbutton.FloatingActionsMenu
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        app:fab_addButtonColorNormal="@color/colorAccent"
-        app:fab_addButtonColorPressed="@color/colorAccent"
-        app:fab_labelStyle="@style/fab_style">
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabRecipe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_colorNormal="@color/gray"
-            app:fab_colorPressed="@color/gray"
-            app:fab_icon="@drawable/ic_food_fab"
-            app:fab_size="mini"
-            app:fab_title="@string/create_recipe" />
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabCategory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_colorNormal="@color/gray"
-            app:fab_colorPressed="@color/gray"
-            app:fab_icon="@drawable/ic_category_fab"
-            app:fab_size="mini"
-            app:fab_title="@string/create_category" />
-
-    </com.getbase.floatingactionbutton.FloatingActionsMenu>
-
-</FrameLayout>
+</LinearLayout>

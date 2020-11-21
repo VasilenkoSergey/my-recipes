@@ -2,16 +2,21 @@ package io.vasilenko.myrecipes.presentation.catalog.adapter
 
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
+import io.vasilenko.myrecipes.R
 import io.vasilenko.myrecipes.databinding.ItemCatalogCategoriesBinding
 import io.vasilenko.myrecipes.databinding.ItemCatalogEmptyBinding
 import io.vasilenko.myrecipes.databinding.ItemCatalogRecipesBinding
-import io.vasilenko.myrecipes.presentation.catalog.model.CatalogEmptyGroupModel
 import io.vasilenko.myrecipes.presentation.catalog.model.CatalogCategoriesGroupModel
+import io.vasilenko.myrecipes.presentation.catalog.model.CatalogEmptyGroupModel
 import io.vasilenko.myrecipes.presentation.catalog.model.CatalogRecipesGroupModel
-import io.vasilenko.myrecipes.presentation.common.BaseDiffUtilItemCallback
-import io.vasilenko.myrecipes.presentation.common.ListItem
+import io.vasilenko.myrecipes.core.presentation.adapter.BaseDiffUtilItemCallback
+import io.vasilenko.myrecipes.core.presentation.ui.ItemDecoration
+import io.vasilenko.myrecipes.core.presentation.adapter.ListItem
 
-class CatalogAdapter : AsyncListDifferDelegationAdapter<ListItem>(BaseDiffUtilItemCallback()) {
+
+class CatalogAdapter(
+    private val recipeDetailsClickListener: (Long) -> Unit
+) : AsyncListDifferDelegationAdapter<ListItem>(BaseDiffUtilItemCallback()) {
 
     init {
         delegatesManager.addDelegate(categoriesDelegate())
@@ -21,13 +26,18 @@ class CatalogAdapter : AsyncListDifferDelegationAdapter<ListItem>(BaseDiffUtilIt
 
     private fun categoriesDelegate() =
         adapterDelegateViewBinding<CatalogCategoriesGroupModel, ListItem, ItemCatalogCategoriesBinding>(
-            { layoutInflater, root -> ItemCatalogCategoriesBinding.inflate(layoutInflater, root, false) }
+            { layoutInflater, root ->
+                ItemCatalogCategoriesBinding.inflate(
+                    layoutInflater,
+                    root,
+                    false
+                )
+            }
         ) {
             val adapter = CategoriesAdapter()
             binding.recyclerView.adapter = adapter
 
             bind {
-                binding.titleTextView.text = item.title
                 adapter.items = item.recipes
             }
         }
@@ -42,8 +52,13 @@ class CatalogAdapter : AsyncListDifferDelegationAdapter<ListItem>(BaseDiffUtilIt
                 )
             }
         ) {
-            val adapter = RecipesAdapter()
+            val adapter = RecipesAdapter(recipeDetailsClickListener)
+            val padding =
+                binding.recyclerView.context.resources.getDimensionPixelSize(R.dimen.decoration_padding)
             binding.recyclerView.adapter = adapter
+            binding.recyclerView.addItemDecoration(
+                ItemDecoration(padding)
+            )
 
             bind {
                 binding.titleTextView.text = item.title

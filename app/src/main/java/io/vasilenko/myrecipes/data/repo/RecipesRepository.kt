@@ -17,6 +17,11 @@ class RecipesRepository @Inject constructor(
         return mapper.mapRecipesToEntities(recipes)
     }
 
+    override fun findById(id: Long): Flow<RecipeEntity> {
+        val recipe = dao.findById(id)
+        return mapper.mapRecipeToEntity(recipe)
+    }
+
     override suspend fun save(recipe: RecipeEntity) {
         dao.save(mapper.mapEntityToRecipe(recipe))
     }

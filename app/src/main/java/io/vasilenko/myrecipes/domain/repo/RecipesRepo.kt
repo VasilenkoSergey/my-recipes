@@ -7,5 +7,7 @@ interface RecipesRepo {
 
     fun findAll(): Flow<List<RecipeEntity>>
 
+    fun findById(id: Long): Flow<RecipeEntity>
+
     suspend fun save(recipe: RecipeEntity)
 }

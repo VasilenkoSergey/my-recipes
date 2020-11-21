@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class GetImageDataUseCase @Inject constructor(private val fileManager: FileManager) : UseCase {
 
-    fun perform(path: String): Uri {
+    fun execute(path: String): Uri {
         return fileManager.getImageFileUri(path)
     }
 }

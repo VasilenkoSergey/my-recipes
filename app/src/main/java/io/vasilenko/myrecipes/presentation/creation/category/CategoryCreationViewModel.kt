@@ -5,14 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.vasilenko.myrecipes.domain.usecase.CreateCategoryUseCase
-import io.vasilenko.myrecipes.presentation.mapper.CategoriesModelMapper
-import io.vasilenko.myrecipes.presentation.model.CategoryModel
+import io.vasilenko.myrecipes.presentation.creation.category.mapper.CategoryCreationMapper
+import io.vasilenko.myrecipes.presentation.creation.category.model.CategoryCreationModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class CategoryCreationViewModel @Inject constructor(
     private val createUseCase: CreateCategoryUseCase,
-    private val mapper: CategoriesModelMapper
+    private val mapper: CategoryCreationMapper
 ) : ViewModel() {
 
     private val _isCreateButtonEnabled = MutableLiveData<Boolean>()
@@ -29,9 +29,9 @@ class CategoryCreationViewModel @Inject constructor(
         checkData()
     }
 
-    fun saveCategory(category: CategoryModel) {
+    fun saveCategory(category: CategoryCreationModel) {
         viewModelScope.launch {
-            createUseCase.createCategory(mapper.mapCategoryModelToEntity(category))
+            createUseCase.execute(mapper.mapCategoryModelToEntity(category))
         }
     }
 

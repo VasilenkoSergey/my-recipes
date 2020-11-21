@@ -8,65 +8,21 @@
     <fragment
         android:id="@+id/navCatalog"
         android:name="io.vasilenko.myrecipes.presentation.catalog.CatalogFragment"
-        android:label="HomeFragment"
+        android:label="CatalogFragment"
         tools:layout="@layout/fragment_catalog">
         <action
-            android:id="@+id/action_navCatalog_to_recipeCreationFragment"
-            app:destination="@id/recipeCreationFragment" />
-        <action
-            android:id="@+id/action_navCatalog_to_categoryCreationFragment"
-            app:destination="@id/categoryCreationFragment" />
+            android:id="@+id/action_navCatalog_to_recipe_details"
+            app:destination="@id/recipe_details" />
     </fragment>
 
     <fragment
-        android:id="@+id/navCreation"
-        android:name="io.vasilenko.myrecipes.presentation.creation.CreationFragment"
-        android:label="CatalogFragment"
-        tools:layout="@layout/fragment_creation">
-        <action
-            android:id="@+id/action_navCreate_to_createCategoryFragment"
-            app:destination="@id/categoryCreationFragment" />
-        <action
-            android:id="@+id/action_navCreate_to_createRecipeFragment"
-            app:destination="@id/recipeCreationFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/categoryCreationFragment"
-        android:name="io.vasilenko.myrecipes.presentation.creation.category.CategoryCreationFragment"
-        android:label="CreateCategoryFragment"
-        tools:layout="@layout/fragment_creation_category">
-        <action
-            android:id="@+id/action_categoryCreationFragment_to_creation_cancel_dialog"
-            app:destination="@id/creation_cancel_dialog" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/recipeCreationFragment"
-        android:name="io.vasilenko.myrecipes.presentation.creation.recipe.RecipeCreationFragment"
-        android:label="CreateRecipeFragment"
-        tools:layout="@layout/fragment_creation_recipe">
-        <action
-            android:id="@+id/action_recipeCreationFragment_to_creation_cancel_dialog"
-            app:destination="@id/creation_cancel_dialog" />
-        <action
-            android:id="@+id/action_recipeCreationFragment_to_image_picker_dialog"
-            app:destination="@id/image_picker_dialog" />
-    </fragment>
-
-    <dialog
-        android:id="@+id/creation_cancel_dialog"
-        android:name="io.vasilenko.myrecipes.presentation.creation.CreationCancelDialogFragment"
-        tools:layout="@layout/dialog_creation_cancel" />
-
-    <dialog
-        android:id="@+id/image_picker_dialog"
-        android:name="io.vasilenko.myrecipes.presentation.imagepicker.ImagePickerDialog"
-        tools:layout="@layout/dialog_image_picker">
+        android:id="@+id/recipe_details"
+        android:name="io.vasilenko.myrecipes.presentation.recipedetails.RecipeDetailsFragment"
+        android:label="RecipeDetailsFragment"
+        tools:layout="@layout/fragment_recipe_details">
         <argument
-            android:name="path"
-            app:argType="string"
-            android:defaultValue="" />
-    </dialog>
+            android:name="id"
+            app:argType="long" />
+    </fragment>
 
 </navigation>
